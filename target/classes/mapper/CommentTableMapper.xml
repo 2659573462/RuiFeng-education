@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rimi.ruiFeng.mapper.CommentTableMapper">
+  <resultMap id="BaseResultMap" type="com.rimi.ruiFeng.bean.CommentTable">
+    <!--@mbg.generated-->
+    <!--@Table comment_table-->
+    <id column="comment_ID" jdbcType="INTEGER" property="commentId" />
+    <result column="comment_coding" jdbcType="VARCHAR" property="commentCoding" />
+    <result column="comment_user" jdbcType="INTEGER" property="commentUser" />
+    <result column="comment_time" jdbcType="VARCHAR" property="commentTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    comment_ID, comment_coding, comment_user, comment_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from comment_table
+    where comment_ID = #{commentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from comment_table
+    where comment_ID = #{commentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="comment_ID" keyProperty="commentId" parameterType="com.rimi.ruiFeng.bean.CommentTable" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into comment_table (comment_coding, comment_user, comment_time
+      )
+    values (#{commentCoding,jdbcType=VARCHAR}, #{commentUser,jdbcType=INTEGER}, #{commentTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="comment_ID" keyProperty="commentId" parameterType="com.rimi.ruiFeng.bean.CommentTable" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into comment_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentCoding != null">
+        comment_coding,
+      </if>
+      <if test="commentUser != null">
+        comment_user,
+      </if>
+      <if test="commentTime != null">
+        comment_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentCoding != null">
+        #{commentCoding,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUser != null">
+        #{commentUser,jdbcType=INTEGER},
+      </if>
+      <if test="commentTime != null">
+        #{commentTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.ruiFeng.bean.CommentTable">
+    <!--@mbg.generated-->
+    update comment_table
+    <set>
+      <if test="commentCoding != null">
+        comment_coding = #{commentCoding,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUser != null">
+        comment_user = #{commentUser,jdbcType=INTEGER},
+      </if>
+      <if test="commentTime != null">
+        comment_time = #{commentTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where comment_ID = #{commentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.ruiFeng.bean.CommentTable">
+    <!--@mbg.generated-->
+    update comment_table
+    set comment_coding = #{commentCoding,jdbcType=VARCHAR},
+      comment_user = #{commentUser,jdbcType=INTEGER},
+      comment_time = #{commentTime,jdbcType=VARCHAR}
+    where comment_ID = #{commentId,jdbcType=INTEGER}
+  </update>
+</mapper>
