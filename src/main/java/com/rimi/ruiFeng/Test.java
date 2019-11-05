@@ -6,6 +6,6 @@ package com.rimi.ruiFeng;
  */
 public class Test {
     public static void main(String[] args) {
-        System.out.println("测试厂库0.1");
+        System.out.println("测试厂库0.2");
     }
 }
