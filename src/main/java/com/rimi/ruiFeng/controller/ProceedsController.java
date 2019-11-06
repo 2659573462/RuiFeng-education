@@ -25,7 +25,8 @@ public class ProceedsController {
 
     //@PostMapping("/purchase")
     @GetMapping("/purchase")
-    public void payment(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void payment(HttpServletRequest request, HttpServletResponse response,String videoId) throws IOException {
+
         //生成订单
         String orderForm =new AcquireOrderForm().getOrderForm();
         String orderForm1 =new AcquireOrderForm().getOrderForm();
@@ -63,12 +64,13 @@ public class ProceedsController {
         String form="";
         try {
             form = alipayClient.pageExecute(alipayRequest).getBody(); //调用SDK生成表单
-            //AlipayTradePagePayResponse responses = alipayClient.pageExecute(alipayRequest);
-            //if(responses.isSuccess()){
-            //    System.out.println("调用成功");
-            //} else {
-            //    System.out.println("调用失败");
-            //}
+            AlipayTradePagePayResponse responses = alipayClient.pageExecute(alipayRequest);
+            if(responses.isSuccess()){
+
+                System.out.println("调用成功");
+            } else {
+                System.out.println("调用失败");
+            }
         } catch (AlipayApiException e) {
             e.printStackTrace();
         }

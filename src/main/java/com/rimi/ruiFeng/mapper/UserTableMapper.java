@@ -1,11 +1,13 @@
 package com.rimi.ruiFeng.mapper;
 
 import com.rimi.ruiFeng.bean.UserTable;
+import org.apache.ibatis.annotations.Param;
 
 /**
- *${Description}
- *@author chenjin
- *@date 2019/11/5 14:17
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/6 20:17
  */
 public interface UserTableMapper {
     int deleteByPrimaryKey(Integer userId);
@@ -19,4 +21,6 @@ public interface UserTableMapper {
     int updateByPrimaryKeySelective(UserTable record);
 
     int updateByPrimaryKey(UserTable record);
+
+    UserTable selectUser(@Param(value ="username") String username,@Param(value = "password") String password);
 }

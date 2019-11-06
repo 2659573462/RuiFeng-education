@@ -52,7 +52,7 @@
     <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="typeAliasesPackage" value="com.rimi.ruiFeng.bean"/>
-        <property name="mapperLocations" value="classpath:mapper/CommentTableMapper.xml"/>
+        <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
         <property name="plugins">
             <array>
                 <bean class="com.github.pagehelper.PageInterceptor">
@@ -71,5 +71,8 @@
         </property>
     </bean>
 
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.rimi.ruiFeng.mapper"/>
+    </bean>
 
 </beans>

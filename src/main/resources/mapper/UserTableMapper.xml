@@ -16,11 +16,12 @@
     <result column="User_wish" jdbcType="VARCHAR" property="userWish" />
     <result column="User_history" jdbcType="VARCHAR" property="userHistory" />
     <result column="User_inter" jdbcType="VARCHAR" property="userInter" />
+    <result column="User_openid" jdbcType="VARCHAR" property="userOpenid" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     User_id, User_username, User_password, User_headportrait, User_alias, User_tellphonenumber, 
-    User_email, User_shopcart, User_byvideo, User_wish, User_history, User_inter
+    User_email, User_shopcart, User_byvideo, User_wish, User_history, User_inter, User_openid
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -39,11 +40,13 @@
     insert into user_table (User_username, User_password, User_headportrait, 
       User_alias, User_tellphonenumber, User_email, 
       User_shopcart, User_byvideo, User_wish, 
-      User_history, User_inter)
+      User_history, User_inter, User_openid
+      )
     values (#{userUsername,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userHeadportrait,jdbcType=VARCHAR}, 
       #{userAlias,jdbcType=VARCHAR}, #{userTellphonenumber,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, 
       #{userShopcart,jdbcType=VARCHAR}, #{userByvideo,jdbcType=VARCHAR}, #{userWish,jdbcType=VARCHAR}, 
-      #{userHistory,jdbcType=VARCHAR}, #{userInter,jdbcType=VARCHAR})
+      #{userHistory,jdbcType=VARCHAR}, #{userInter,jdbcType=VARCHAR}, #{userOpenid,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="User_id" keyProperty="userId" parameterType="com.rimi.ruiFeng.bean.UserTable" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -82,6 +85,9 @@
       <if test="userInter != null">
         User_inter,
       </if>
+      <if test="userOpenid != null">
+        User_openid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userUsername != null">
@@ -116,6 +122,9 @@
       </if>
       <if test="userInter != null">
         #{userInter,jdbcType=VARCHAR},
+      </if>
+      <if test="userOpenid != null">
+        #{userOpenid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -156,6 +165,9 @@
       <if test="userInter != null">
         User_inter = #{userInter,jdbcType=VARCHAR},
       </if>
+      <if test="userOpenid != null">
+        User_openid = #{userOpenid,jdbcType=VARCHAR},
+      </if>
     </set>
     where User_id = #{userId,jdbcType=INTEGER}
   </update>
@@ -172,7 +184,12 @@
       User_byvideo = #{userByvideo,jdbcType=VARCHAR},
       User_wish = #{userWish,jdbcType=VARCHAR},
       User_history = #{userHistory,jdbcType=VARCHAR},
-      User_inter = #{userInter,jdbcType=VARCHAR}
+      User_inter = #{userInter,jdbcType=VARCHAR},
+      User_openid = #{userOpenid,jdbcType=VARCHAR}
     where User_id = #{userId,jdbcType=INTEGER}
   </update>
+  <select id="selectUser" resultMap="BaseResultMap">
+    select *
+    from user_table where User_username=#{username} and User_password=#{password};
+  </select>
 </mapper>

@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
+
     <properties>
         <spring.version>5.2.0.RELEASE</spring.version>
         <lombok.version>1.18.10</lombok.version>
@@ -32,6 +33,52 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!--接口文档依赖-->
+        <!--借口文档依赖-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <!--短信推送-->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <!--短信推送-->
+
+        <!--短信推送-->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-ecs</artifactId>
+            <version>4.11.0</version>
+        </dependency>
+        <!--短信推送-->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>4.0.3</version>
+        </dependency>
+
+        <!--阿里云接口包-->
+        <dependency>
+            <groupId>com.github.suxingli</groupId>
+            <artifactId>aliyuncs</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <!--二维码支付包-->
         <dependency>
             <groupId>com.alipay.sdk</groupId>
             <artifactId>alipay-sdk-java</artifactId>
@@ -120,12 +167,27 @@
             <artifactId>shiro-spring</artifactId>
             <version>1.4.1</version>
         </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>junit</groupId>-->
+        <!--    <artifactId>junit</artifactId>-->
+        <!--    <version>${junit.version}</version>-->
+        <!--    <scope>test</scope>-->
+        <!--</dependency>-->
+
+        <!--spring-test-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.2.0.RELEASE</version>
+        </dependency>
+        <!--&lt;!&ndash;junit&ndash;&gt;-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
