@@ -6,21 +6,31 @@ package com.rimi.ruiFeng.common;
  */
 public abstract class AbstractResultData extends AbstractResult implements ResultData {
 
-    private Object data;
+    private Object secretKey;
 
-    public AbstractResultData(){}
+    public AbstractResultData(){
+        super(ResultCode.FAIL.getCode(),ResultCode.FAIL.getMessage());
+    }
 
-    public AbstractResultData(Object data){
+    public  AbstractResultData(String zt){
+         super(200,ResultCode.SUCCESSC.getMessage());
+    }
+
+    public  AbstractResultData(int i1 ,String i2){
+        super(i1,i2);
+    }
+
+    public AbstractResultData(Object secretKey){
         super(ResultCode.SUCCESS.getCode(),ResultCode.SUCCESS.getMessage());
-        this.data = data;
+        this.secretKey = secretKey;
     }
 
     @Override
     public Object getData() {
-        return data;
+        return secretKey;
     }
 
-    public void setData(Object data) {
-        this.data = data;
+    public void setData(Object secretKey) {
+        this.secretKey = secretKey;
     }
 }

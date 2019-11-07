@@ -18,11 +18,16 @@ import javax.annotation.Resource;
 public class LoginServiceImpl implements LoginService {
 
     @Resource
-    private UserTableMapper userTableMapper;
+    private UserTableService userTableService;
 
+    /**
+     * 传入一个前端用户对象返回一个数据库实体用户对象
+     * @param user
+     * @return
+     */
     @Override
     public UserTable selectUser(User user) {
-        UserTable u =  userTableMapper.selectUser(user.getUsername(),user.getPassword());
+        UserTable u = userTableService.selectUser(user.getUsername(),user.getPassword());
         return u;
     }
 

@@ -33,7 +33,7 @@ public class Swagger2Configuration {
         return new ApiInfo(
                 "睿峰在线教育管理系统API文档" // 标题
                 , "" // 描述信息
-                , "1.0" // 版本信息
+                , "1.0" // 版本信息z
                 , " 10.2.3.182:8008/" // 服务地址
                 , "shangzf"
                 , "" // 签名

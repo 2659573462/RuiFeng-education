@@ -23,4 +23,6 @@ public interface UserTableMapper {
     int updateByPrimaryKey(UserTable record);
 
     UserTable selectUser(@Param(value ="username") String username,@Param(value = "password") String password);
+
+    UserTable selectUsername(String username);
 }

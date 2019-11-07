@@ -7,9 +7,14 @@ package com.rimi.ruiFeng.common;
 public class DefaultResultData extends AbstractResultData {
 
     public DefaultResultData() {
+
     }
 
-    public DefaultResultData(Object data) {
-        super(data);
+    public DefaultResultData(Object secretKey) {
+        super(secretKey);
+    }
+
+    public DefaultResultData(int i , String is) {
+        super(i,is);
     }
 }

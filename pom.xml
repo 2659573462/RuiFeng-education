@@ -11,19 +11,42 @@
 
 
     <properties>
+        <!--spring的版本-->
         <spring.version>5.2.0.RELEASE</spring.version>
-        <lombok.version>1.18.10</lombok.version>
+        <!--aspectjweaver的版本-->
         <aspectjweaver.version>1.9.4</aspectjweaver.version>
+        <!--mybatis的版本-->
         <mybatis.version>3.5.3</mybatis.version>
+        <!--mybatis-spring的版本-->
         <mybatis.spring.version>2.0.3</mybatis.spring.version>
-        <mysql.version>5.1.48</mysql.version>
+        <!--druid的版本-->
         <druid.version>1.1.20</druid.version>
-        <slf4j.version>1.7.28</slf4j.version>
-        <jackson.version>2.10.0</jackson.version>
-        <swagger.version>2.9.2</swagger.version>
-        <pagehelper.version>5.1.10</pagehelper.version>
-        <shiro.version>1.4.1</shiro.version>
+        <!--mysql的版本-->
+        <mysql.version>5.1.48</mysql.version>
+        <!--lombok的版本-->
+        <lombok.version>1.18.10</lombok.version>
+        <!--junit的版本-->
         <junit.version>4.12</junit.version>
+        <!--log4j的版本-->
+        <log4j.version>1.2.17</log4j.version>
+        <!--slf4j的版本-->
+        <slf4j.version>1.7.28</slf4j.version>
+        <!--jstl的版本-->
+        <jstl.version>1.2.5</jstl.version>
+        <!--servlet的版本-->
+        <servlet.version>4.0.1</servlet.version>
+        <!--fileupload的版本-->
+        <fileupload.version>1.4</fileupload.version>
+        <!--pagehelper的版本-->
+        <pagehelper.version>5.1.10</pagehelper.version>
+        <!--shiro的版本-->
+        <shiro.version>1.4.1</shiro.version>
+        <!--swagger2的版本-->
+        <swagger2.version>2.9.2</swagger2.version>
+        <!--jackson的版本-->
+        <jackson.version>2.10.0</jackson.version>
+        <!--fastdfs-client-->
+        <fastdfs.client.version>1.27-SNAPSHOT</fastdfs.client.version>
     </properties>
 
     <dependencies>
@@ -147,16 +170,16 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>io.springfox</groupId>-->
+        <!--    <artifactId>springfox-swagger2</artifactId>-->
+        <!--    <version>${swagger.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>io.springfox</groupId>-->
+        <!--    <artifactId>springfox-swagger-ui</artifactId>-->
+        <!--    <version>${swagger.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
@@ -167,26 +190,34 @@
             <artifactId>shiro-spring</artifactId>
             <version>1.4.1</version>
         </dependency>
-        <!--<dependency>-->
-        <!--    <groupId>junit</groupId>-->
-        <!--    <artifactId>junit</artifactId>-->
-        <!--    <version>${junit.version}</version>-->
-        <!--    <scope>test</scope>-->
-        <!--</dependency>-->
-
-        <!--spring-test-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>5.2.0.RELEASE</version>
-        </dependency>
-        <!--&lt;!&ndash;junit&ndash;&gt;-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <!--fastjson-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.62</version>
+        </dependency>
+        <!--fastdfs-->
+        <dependency>
+            <groupId>org.csource</groupId>
+            <artifactId>fastdfs-client-java</artifactId>
+            <version>${fastdfs.client.version}</version>
+        </dependency>
+        <!--fileupload-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${fileupload.version}</version>
+        </dependency>
+        <!--org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported-->
+        <!--org.springframework.web.HttpMediaTypeNotSupportedException: Invalid mime type "application/x-www-form-urlencoded, application/json": Invalid token character ',' in token "x-www-form-urlencoded, application/json"]-->
+
+
 
     </dependencies>
 

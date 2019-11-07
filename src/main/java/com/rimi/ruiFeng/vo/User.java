@@ -1,6 +1,8 @@
 package com.rimi.ruiFeng.vo;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 前端传输用户登录信息

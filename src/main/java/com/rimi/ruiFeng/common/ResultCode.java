@@ -12,9 +12,30 @@ public enum ResultCode {
      */
     SUCCESS(200, "成功"),
     /**
+     *
+     */
+    SUCCESSCDEFEATED(204,"发送失败"),
+    /**
+     * 短消息发送成功
+     */
+    SUCCESSC(205,"发送成功"),
+    /**
+     * 账号已经存在
+     */
+    ALREADYEXIST(206,"账号已经存在"),
+    /**
+     *
+     */
+    ACCOUNTNUMBERSUCCEED(207,"账号注册成功"),
+    /**
+     *
+     */
+    ACCOUNTNUMBERDEFEATED(208,"账号注册失败"),
+    /**
      * 失败
      */
     FAIL(201, "失败"),
+
     /**
      * 方法未找到
      */

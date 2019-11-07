@@ -6,7 +6,7 @@
 
 
     <!--配置类路径扫面器-->
-    <context:component-scan base-package="com.rimi.ruiFeng">
+    <context:component-scan base-package="com.rimi.ruiFeng.controller">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
 
@@ -26,14 +26,27 @@
     <!--静态资源映射-->
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
+    <mvc:annotation-driven>
+        <!--消息转换器-->
+        <mvc:message-converters>
+            <!--指定json接口-->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <!-- 编码格式 -->
+                <property name="defaultCharset" value="utf-8"/>
+                <!-- 响应数据类型 -->
+                <property name="supportedMediaTypes">
+                    <value>text/html;charset=utf-8</value>
+                </property>
+                <!-- 如果字段的数据为null时，如何处理该字段 -->
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
 
+    <bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!--文件上传的大小 单位byte  20Mb   -1是不限制大小-->
+        <property name="maxUploadSize" value="20971520"/>
+    </bean>
 
-
-    <!--<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-
-    <!--    <property name="defaultEncoding" value="UTF-8"/>-->
-    <!--    &lt;!&ndash;文件上传的大小 单位byte  20Mb   -1是不限制大小&ndash;&gt;-->
-    <!--    <property name="maxUploadSize" value="20971520"/>-->
-    <!--</bean>-->
 </beans>

@@ -3,6 +3,7 @@ package com.rimi.ruiFeng.bean;
 import lombok.Data;
 
 /**
+ *
  *${Description}
  *@author chenjin
  *@date 2019/11/5 13:03
