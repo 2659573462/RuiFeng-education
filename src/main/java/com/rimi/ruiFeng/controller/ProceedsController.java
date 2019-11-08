@@ -7,9 +7,12 @@ import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.response.AlipayTradePagePayResponse;
 import com.rimi.ruiFeng.service.VideoTableService;
 import com.rimi.ruiFeng.util.AcquireOrderForm;
+import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +24,9 @@ import java.io.IOException;
  * @author chenjin
  * @date 2019/11/5 16:16
  */
-@Controller
+@Api(tags = "二维码支付")
+@CrossOrigin
+@RestController
 public class ProceedsController {
 
     public VideoTableService videoTableMapper;

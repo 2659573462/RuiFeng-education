@@ -12,7 +12,7 @@ public enum ResultCode {
      */
     SUCCESS(200, "成功"),
     /**
-     *
+     *发送失败
      */
     SUCCESSCDEFEATED(204,"发送失败"),
     /**
@@ -24,11 +24,11 @@ public enum ResultCode {
      */
     ALREADYEXIST(206,"账号已经存在"),
     /**
-     *
+     *账号注册成功
      */
     ACCOUNTNUMBERSUCCEED(207,"账号注册成功"),
     /**
-     *
+     *账号注册失败
      */
     ACCOUNTNUMBERDEFEATED(208,"账号注册失败"),
     /**
@@ -45,9 +45,21 @@ public enum ResultCode {
      */
     NOT_SUPPORT_METHOD(403, "方法请求方式不支持"),
     /**
+     * 当前方法位为注册验证
+     */
+    NOT_SUPPORT_REGISTER(406, "当前方法位为注册验证"),
+    /**
      * 服务器异常
      */
-    ERROR(500, "服务器异常");
+    ERROR(500, "服务器异常"),
+    /**
+     *缺少数据
+     */
+    ERROR_PARAMETER(505, "缺少数据类型"),
+    /**
+     * 验证码不正确
+     */
+    ERROR_VERIFICATION_CODE_INCORRECT(510,"验证码不正确");
 
     private int code;
     private String message;

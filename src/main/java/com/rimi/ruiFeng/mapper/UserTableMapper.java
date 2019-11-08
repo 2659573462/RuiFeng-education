@@ -25,4 +25,6 @@ public interface UserTableMapper {
     UserTable selectUser(@Param(value ="username") String username,@Param(value = "password") String password);
 
     UserTable selectUsername(String username);
+
+    UserTable selectMobile(String mobile);
 }

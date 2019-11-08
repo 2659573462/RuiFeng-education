@@ -50,7 +50,7 @@ public class SmsPushUtil {
     @ResponseBody
     @PostMapping("/messageCode")
     public AbstractResult getMessageCode(@RequestBody  MessageTable messageTable) {
-        System.out.println(messageTable);
+        System.out.println("手机号是"+messageTable.getMessageMobile());
         String ssm = getSsm(messageTable.getMessageMobile());
         //判断发送是否成功
         if (ssm!=null){
