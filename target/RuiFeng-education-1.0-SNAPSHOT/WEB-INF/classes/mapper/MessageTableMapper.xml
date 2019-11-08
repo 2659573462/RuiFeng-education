@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rimi.ruiFeng.mapper.MessageTableMapper">
+  <resultMap id="BaseResultMap" type="com.rimi.ruiFeng.bean.MessageTable">
+    <!--@mbg.generated-->
+    <!--@Table message_table-->
+    <id column="message_id" jdbcType="INTEGER" property="messageId" />
+    <result column="message_mobile" jdbcType="VARCHAR" property="messageMobile" />
+    <result column="message_verifcationCode" jdbcType="VARCHAR" property="messageVerifcationcode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    message_id, message_mobile, message_verifcationCode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from message_table
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from message_table
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rimi.ruiFeng.bean.MessageTable">
+    <!--@mbg.generated-->
+    insert into message_table (message_id, message_mobile, message_verifcationCode
+      )
+    values (#{messageId,jdbcType=INTEGER}, #{messageMobile,jdbcType=VARCHAR}, #{messageVerifcationcode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rimi.ruiFeng.bean.MessageTable">
+    <!--@mbg.generated-->
+    insert into message_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="messageId != null">
+        message_id,
+      </if>
+      <if test="messageMobile != null">
+        message_mobile,
+      </if>
+      <if test="messageVerifcationcode != null">
+        message_verifcationCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="messageId != null">
+        #{messageId,jdbcType=INTEGER},
+      </if>
+      <if test="messageMobile != null">
+        #{messageMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="messageVerifcationcode != null">
+        #{messageVerifcationcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.ruiFeng.bean.MessageTable">
+    <!--@mbg.generated-->
+    update message_table
+    <set>
+      <if test="messageMobile != null">
+        message_mobile = #{messageMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="messageVerifcationcode != null">
+        message_verifcationCode = #{messageVerifcationcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.ruiFeng.bean.MessageTable">
+    <!--@mbg.generated-->
+    update message_table
+    set message_mobile = #{messageMobile,jdbcType=VARCHAR},
+      message_verifcationCode = #{messageVerifcationcode,jdbcType=VARCHAR}
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </update>
+  <select id="selectMobile" resultMap="BaseResultMap">
+    select *
+    from message_table where message_mobile = #{numbers};
+  </select>
+  <update id="updateMessageMobile">
+    update message_table
+    set message_verifcationCode = #{verify} where message_mobile = #{numbers};
+  </update>
+    <select id="selectMobileAndVerificationoCdes" resultMap="BaseResultMap">
+      select *
+      from message_table where message_mobile=#{telephoneNumber} and message_verifcationCode=#{authCode};
+    </select>
+</mapper>

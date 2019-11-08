@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--配置类路径扫面器-->
+    <context:component-scan base-package="com.rimi.ruiFeng">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+
+    <!--配置注解映射-->
+    <mvc:annotation-driven/>
+
+    <!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--静态资源映射-->
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
+    <!--静态资源映射-->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+    <mvc:annotation-driven>
+        <!--消息转换器-->
+        <mvc:message-converters>
+            <!--指定json接口-->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <!-- 编码格式 -->
+                <property name="defaultCharset" value="utf-8"/>
+                <!-- 响应数据类型 -->
+                <property name="supportedMediaTypes">
+                    <value>text/html;charset=utf-8</value>
+                </property>
+                <!-- 如果字段的数据为null时，如何处理该字段 -->
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+    <bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!--文件上传的大小 单位byte  20Mb   -1是不限制大小-->
+        <property name="maxUploadSize" value="20971520"/>
+    </bean>
+
+
+
+</beans>

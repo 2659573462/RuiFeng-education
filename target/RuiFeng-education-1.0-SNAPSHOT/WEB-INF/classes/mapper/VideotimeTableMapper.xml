@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rimi.ruiFeng.mapper.VideotimeTableMapper">
+  <resultMap id="BaseResultMap" type="com.rimi.ruiFeng.bean.VideotimeTable">
+    <!--@mbg.generated-->
+    <!--@Table videotime_table-->
+    <id column="videoTiem_id" jdbcType="INTEGER" property="videotiemId" />
+    <result column="videoTime_videoid" jdbcType="VARCHAR" property="videotimeVideoid" />
+    <result column="videoTime_Time" jdbcType="VARCHAR" property="videotimeTime" />
+    <result column="video_user" jdbcType="VARCHAR" property="videoUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    videoTiem_id, videoTime_videoid, videoTime_Time, video_user
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from videotime_table
+    where videoTiem_id = #{videotiemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from videotime_table
+    where videoTiem_id = #{videotiemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="videoTiem_id" keyProperty="videotiemId" parameterType="com.rimi.ruiFeng.bean.VideotimeTable" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into videotime_table (videoTime_videoid, videoTime_Time, 
+      video_user)
+    values (#{videotimeVideoid,jdbcType=VARCHAR}, #{videotimeTime,jdbcType=VARCHAR}, 
+      #{videoUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="videoTiem_id" keyProperty="videotiemId" parameterType="com.rimi.ruiFeng.bean.VideotimeTable" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into videotime_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="videotimeVideoid != null">
+        videoTime_videoid,
+      </if>
+      <if test="videotimeTime != null">
+        videoTime_Time,
+      </if>
+      <if test="videoUser != null">
+        video_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="videotimeVideoid != null">
+        #{videotimeVideoid,jdbcType=VARCHAR},
+      </if>
+      <if test="videotimeTime != null">
+        #{videotimeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUser != null">
+        #{videoUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.ruiFeng.bean.VideotimeTable">
+    <!--@mbg.generated-->
+    update videotime_table
+    <set>
+      <if test="videotimeVideoid != null">
+        videoTime_videoid = #{videotimeVideoid,jdbcType=VARCHAR},
+      </if>
+      <if test="videotimeTime != null">
+        videoTime_Time = #{videotimeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUser != null">
+        video_user = #{videoUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where videoTiem_id = #{videotiemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.ruiFeng.bean.VideotimeTable">
+    <!--@mbg.generated-->
+    update videotime_table
+    set videoTime_videoid = #{videotimeVideoid,jdbcType=VARCHAR},
+      videoTime_Time = #{videotimeTime,jdbcType=VARCHAR},
+      video_user = #{videoUser,jdbcType=VARCHAR}
+    where videoTiem_id = #{videotiemId,jdbcType=INTEGER}
+  </update>
+</mapper>

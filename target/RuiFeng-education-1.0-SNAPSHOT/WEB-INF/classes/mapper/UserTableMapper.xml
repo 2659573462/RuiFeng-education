@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rimi.ruiFeng.mapper.UserTableMapper">
+  <resultMap id="BaseResultMap" type="com.rimi.ruiFeng.bean.UserTable">
+    <!--@mbg.generated-->
+    <!--@Table user_table-->
+    <id column="User_id" jdbcType="INTEGER" property="userId" />
+    <result column="User_username" jdbcType="VARCHAR" property="userUsername" />
+    <result column="User_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="User_headportrait" jdbcType="VARCHAR" property="userHeadportrait" />
+    <result column="User_alias" jdbcType="VARCHAR" property="userAlias" />
+    <result column="User_tellphonenumber" jdbcType="VARCHAR" property="userTellphonenumber" />
+    <result column="User_email" jdbcType="VARCHAR" property="userEmail" />
+    <result column="User_shopcart" jdbcType="VARCHAR" property="userShopcart" />
+    <result column="User_byvideo" jdbcType="VARCHAR" property="userByvideo" />
+    <result column="User_wish" jdbcType="VARCHAR" property="userWish" />
+    <result column="User_history" jdbcType="VARCHAR" property="userHistory" />
+    <result column="User_inter" jdbcType="VARCHAR" property="userInter" />
+    <result column="User_openid" jdbcType="VARCHAR" property="userOpenid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    User_id, User_username, User_password, User_headportrait, User_alias, User_tellphonenumber, 
+    User_email, User_shopcart, User_byvideo, User_wish, User_history, User_inter, User_openid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from user_table
+    where User_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from user_table
+    where User_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="User_id" keyProperty="userId" parameterType="com.rimi.ruiFeng.bean.UserTable" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user_table (User_username, User_password, User_headportrait, 
+      User_alias, User_tellphonenumber, User_email, 
+      User_shopcart, User_byvideo, User_wish, 
+      User_history, User_inter, User_openid
+      )
+    values (#{userUsername,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userHeadportrait,jdbcType=VARCHAR}, 
+      #{userAlias,jdbcType=VARCHAR}, #{userTellphonenumber,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, 
+      #{userShopcart,jdbcType=VARCHAR}, #{userByvideo,jdbcType=VARCHAR}, #{userWish,jdbcType=VARCHAR}, 
+      #{userHistory,jdbcType=VARCHAR}, #{userInter,jdbcType=VARCHAR}, #{userOpenid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="User_id" keyProperty="userId" parameterType="com.rimi.ruiFeng.bean.UserTable" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userUsername != null">
+        User_username,
+      </if>
+      <if test="userPassword != null">
+        User_password,
+      </if>
+      <if test="userHeadportrait != null">
+        User_headportrait,
+      </if>
+      <if test="userAlias != null">
+        User_alias,
+      </if>
+      <if test="userTellphonenumber != null">
+        User_tellphonenumber,
+      </if>
+      <if test="userEmail != null">
+        User_email,
+      </if>
+      <if test="userShopcart != null">
+        User_shopcart,
+      </if>
+      <if test="userByvideo != null">
+        User_byvideo,
+      </if>
+      <if test="userWish != null">
+        User_wish,
+      </if>
+      <if test="userHistory != null">
+        User_history,
+      </if>
+      <if test="userInter != null">
+        User_inter,
+      </if>
+      <if test="userOpenid != null">
+        User_openid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userUsername != null">
+        #{userUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userHeadportrait != null">
+        #{userHeadportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="userAlias != null">
+        #{userAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="userTellphonenumber != null">
+        #{userTellphonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userShopcart != null">
+        #{userShopcart,jdbcType=VARCHAR},
+      </if>
+      <if test="userByvideo != null">
+        #{userByvideo,jdbcType=VARCHAR},
+      </if>
+      <if test="userWish != null">
+        #{userWish,jdbcType=VARCHAR},
+      </if>
+      <if test="userHistory != null">
+        #{userHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="userInter != null">
+        #{userInter,jdbcType=VARCHAR},
+      </if>
+      <if test="userOpenid != null">
+        #{userOpenid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.ruiFeng.bean.UserTable">
+    <!--@mbg.generated-->
+    update user_table
+    <set>
+      <if test="userUsername != null">
+        User_username = #{userUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        User_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userHeadportrait != null">
+        User_headportrait = #{userHeadportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="userAlias != null">
+        User_alias = #{userAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="userTellphonenumber != null">
+        User_tellphonenumber = #{userTellphonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        User_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userShopcart != null">
+        User_shopcart = #{userShopcart,jdbcType=VARCHAR},
+      </if>
+      <if test="userByvideo != null">
+        User_byvideo = #{userByvideo,jdbcType=VARCHAR},
+      </if>
+      <if test="userWish != null">
+        User_wish = #{userWish,jdbcType=VARCHAR},
+      </if>
+      <if test="userHistory != null">
+        User_history = #{userHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="userInter != null">
+        User_inter = #{userInter,jdbcType=VARCHAR},
+      </if>
+      <if test="userOpenid != null">
+        User_openid = #{userOpenid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where User_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.ruiFeng.bean.UserTable">
+    <!--@mbg.generated-->
+    update user_table
+    set User_username = #{userUsername,jdbcType=VARCHAR},
+      User_password = #{userPassword,jdbcType=VARCHAR},
+      User_headportrait = #{userHeadportrait,jdbcType=VARCHAR},
+      User_alias = #{userAlias,jdbcType=VARCHAR},
+      User_tellphonenumber = #{userTellphonenumber,jdbcType=VARCHAR},
+      User_email = #{userEmail,jdbcType=VARCHAR},
+      User_shopcart = #{userShopcart,jdbcType=VARCHAR},
+      User_byvideo = #{userByvideo,jdbcType=VARCHAR},
+      User_wish = #{userWish,jdbcType=VARCHAR},
+      User_history = #{userHistory,jdbcType=VARCHAR},
+      User_inter = #{userInter,jdbcType=VARCHAR},
+      User_openid = #{userOpenid,jdbcType=VARCHAR}
+    where User_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <select id="selectUser" resultMap="BaseResultMap">
+    select *
+    from user_table where User_username=#{username} and User_password=#{password};
+  </select>
+    <select id="selectUsername" resultMap="BaseResultMap">
+      select *
+      from user_table where User_username = #{username};
+    </select>
+    <select id="selectMobile" resultMap="BaseResultMap">
+      select *
+      from user_table where User_tellphonenumber=#{mobile};
+    </select>
+</mapper>
