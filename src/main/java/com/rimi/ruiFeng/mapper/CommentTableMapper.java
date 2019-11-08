@@ -3,9 +3,10 @@ package com.rimi.ruiFeng.mapper;
 import com.rimi.ruiFeng.bean.CommentTable;
 
 /**
- *${Description}
- *@author chenjin
- *@date 2019/11/5 13:03
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/8 16:14
  */
 public interface CommentTableMapper {
     int deleteByPrimaryKey(Integer commentId);

@@ -5,13 +5,15 @@ import javax.annotation.Resource;
 import com.rimi.ruiFeng.bean.TearchTable;
 import com.rimi.ruiFeng.mapper.TearchTableMapper;
 import com.rimi.ruiFeng.service.TearchTableService;
+
 /**
- *${Description}
- *@author chenjin
- *@date 2019/11/5 14:17
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/5 14:17
  */
 @Service
-public class TearchTableServiceImpl implements TearchTableService{
+public class TearchTableServiceImpl implements TearchTableService {
 
     @Resource
     private TearchTableMapper tearchTableMapper;
@@ -47,3 +49,5 @@ public class TearchTableServiceImpl implements TearchTableService{
     }
 
 }
+
+

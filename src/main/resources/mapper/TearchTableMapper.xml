@@ -7,12 +7,15 @@
     <id column="Tearch_Id" jdbcType="INTEGER" property="tearchId" />
     <result column="Tearch_name" jdbcType="VARCHAR" property="tearchName" />
     <result column="Tearch_info" jdbcType="VARCHAR" property="tearchInfo" />
+    <result column="Tearch-head" jdbcType="VARCHAR" property="tearchHead" />
     <result column="Tearch_direction" jdbcType="VARCHAR" property="tearchDirection" />
     <result column="Tearch_video" jdbcType="VARCHAR" property="tearchVideo" />
+    <result column="Tearch_headportrait" jdbcType="VARCHAR" property="tearchHeadportrait" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    Tearch_Id, Tearch_name, Tearch_info, Tearch_direction, Tearch_video
+    Tearch_Id, Tearch_name, Tearch_info, Tearch-head, Tearch_direction, Tearch_video, 
+    Tearch_headportrait
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -28,10 +31,12 @@
   </delete>
   <insert id="insert" keyColumn="Tearch_Id" keyProperty="tearchId" parameterType="com.rimi.ruiFeng.bean.TearchTable" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into tearch_table (Tearch_name, Tearch_info, Tearch_direction, 
-      Tearch_video)
-    values (#{tearchName,jdbcType=VARCHAR}, #{tearchInfo,jdbcType=VARCHAR}, #{tearchDirection,jdbcType=VARCHAR}, 
-      #{tearchVideo,jdbcType=VARCHAR})
+    insert into tearch_table (Tearch_name, Tearch_info, Tearch-head, 
+      Tearch_direction, Tearch_video, Tearch_headportrait
+      )
+    values (#{tearchName,jdbcType=VARCHAR}, #{tearchInfo,jdbcType=VARCHAR}, #{tearchHead,jdbcType=VARCHAR}, 
+      #{tearchDirection,jdbcType=VARCHAR}, #{tearchVideo,jdbcType=VARCHAR}, #{tearchHeadportrait,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="Tearch_Id" keyProperty="tearchId" parameterType="com.rimi.ruiFeng.bean.TearchTable" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -43,11 +48,17 @@
       <if test="tearchInfo != null">
         Tearch_info,
       </if>
+      <if test="tearchHead != null">
+        Tearch-head,
+      </if>
       <if test="tearchDirection != null">
         Tearch_direction,
       </if>
       <if test="tearchVideo != null">
         Tearch_video,
+      </if>
+      <if test="tearchHeadportrait != null">
+        Tearch_headportrait,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -57,11 +68,17 @@
       <if test="tearchInfo != null">
         #{tearchInfo,jdbcType=VARCHAR},
       </if>
+      <if test="tearchHead != null">
+        #{tearchHead,jdbcType=VARCHAR},
+      </if>
       <if test="tearchDirection != null">
         #{tearchDirection,jdbcType=VARCHAR},
       </if>
       <if test="tearchVideo != null">
         #{tearchVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="tearchHeadportrait != null">
+        #{tearchHeadportrait,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -75,11 +92,17 @@
       <if test="tearchInfo != null">
         Tearch_info = #{tearchInfo,jdbcType=VARCHAR},
       </if>
+      <if test="tearchHead != null">
+        Tearch-head = #{tearchHead,jdbcType=VARCHAR},
+      </if>
       <if test="tearchDirection != null">
         Tearch_direction = #{tearchDirection,jdbcType=VARCHAR},
       </if>
       <if test="tearchVideo != null">
         Tearch_video = #{tearchVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="tearchHeadportrait != null">
+        Tearch_headportrait = #{tearchHeadportrait,jdbcType=VARCHAR},
       </if>
     </set>
     where Tearch_Id = #{tearchId,jdbcType=INTEGER}
@@ -89,8 +112,10 @@
     update tearch_table
     set Tearch_name = #{tearchName,jdbcType=VARCHAR},
       Tearch_info = #{tearchInfo,jdbcType=VARCHAR},
+      Tearch-head = #{tearchHead,jdbcType=VARCHAR},
       Tearch_direction = #{tearchDirection,jdbcType=VARCHAR},
-      Tearch_video = #{tearchVideo,jdbcType=VARCHAR}
+      Tearch_video = #{tearchVideo,jdbcType=VARCHAR},
+      Tearch_headportrait = #{tearchHeadportrait,jdbcType=VARCHAR}
     where Tearch_Id = #{tearchId,jdbcType=INTEGER}
   </update>
 </mapper>

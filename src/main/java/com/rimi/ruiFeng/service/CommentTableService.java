@@ -1,12 +1,14 @@
 package com.rimi.ruiFeng.service;
 
 import com.rimi.ruiFeng.bean.CommentTable;
-    /**
- *${Description}
- *@author chenjin
- *@date 2019/11/5 13:03
+
+/**
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/5 13:03
  */
-public interface CommentTableService{
+public interface CommentTableService {
 
 
     int deleteByPrimaryKey(Integer commentId);
@@ -22,3 +24,5 @@ public interface CommentTableService{
     int updateByPrimaryKey(CommentTable record);
 
 }
+
+

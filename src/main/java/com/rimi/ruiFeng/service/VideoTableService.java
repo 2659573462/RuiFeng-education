@@ -1,12 +1,14 @@
 package com.rimi.ruiFeng.service;
 
 import com.rimi.ruiFeng.bean.VideoTable;
-    /**
- *${Description}
- *@author chenjin
- *@date 2019/11/5 14:17
+
+/**
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/5 14:17
  */
-public interface VideoTableService{
+public interface VideoTableService {
 
 
     int deleteByPrimaryKey(Integer videoId);
@@ -22,3 +24,6 @@ public interface VideoTableService{
     int updateByPrimaryKey(VideoTable record);
 
 }
+
+
+

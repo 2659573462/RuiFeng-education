@@ -1,12 +1,14 @@
 package com.rimi.ruiFeng.service;
 
 import com.rimi.ruiFeng.bean.TearchTable;
-    /**
- *${Description}
- *@author chenjin
- *@date 2019/11/5 14:17
+
+/**
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/5 14:17
  */
-public interface TearchTableService{
+public interface TearchTableService {
 
 
     int deleteByPrimaryKey(Integer tearchId);
@@ -22,3 +24,5 @@ public interface TearchTableService{
     int updateByPrimaryKey(TearchTable record);
 
 }
+
+

@@ -8,6 +8,7 @@
     <result column="Video_coding" jdbcType="VARCHAR" property="videoCoding" />
     <result column="Video_tearch" jdbcType="VARCHAR" property="videoTearch" />
     <result column="Video_Watchnumber" jdbcType="VARCHAR" property="videoWatchnumber" />
+    <result column="Video_suit" jdbcType="VARCHAR" property="videoSuit" />
     <result column="Video_subject" jdbcType="VARCHAR" property="videoSubject" />
     <result column="Video_chapter" jdbcType="VARCHAR" property="videoChapter" />
     <result column="Video_introduce" jdbcType="VARCHAR" property="videoIntroduce" />
@@ -16,12 +17,14 @@
     <result column="Video_discount" jdbcType="VARCHAR" property="videoDiscount" />
     <result column="Video_breviarypicture" jdbcType="VARCHAR" property="videoBreviarypicture" />
     <result column="Video_site" jdbcType="VARCHAR" property="videoSite" />
+    <result column="Video_chapterTiem" jdbcType="VARCHAR" property="videoChaptertiem" />
+    <result column="Video_coursetitle" jdbcType="VARCHAR" property="videoCoursetitle" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    Video_ID, Video_coding, Video_tearch, Video_Watchnumber, Video_subject, Video_chapter, 
-    Video_introduce, Video_pricetype, Video_price, Video_discount, Video_breviarypicture, 
-    Video_site
+    Video_ID, Video_coding, Video_tearch, Video_Watchnumber, Video_suit, Video_subject, 
+    Video_chapter, Video_introduce, Video_pricetype, Video_price, Video_discount, Video_breviarypicture, 
+    Video_site, Video_chapterTiem, Video_coursetitle
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -38,13 +41,15 @@
   <insert id="insert" keyColumn="Video_ID" keyProperty="videoId" parameterType="com.rimi.ruiFeng.bean.VideoTable" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into video_table (Video_coding, Video_tearch, Video_Watchnumber, 
-      Video_subject, Video_chapter, Video_introduce, 
-      Video_pricetype, Video_price, Video_discount, 
-      Video_breviarypicture, Video_site)
+      Video_suit, Video_subject, Video_chapter, 
+      Video_introduce, Video_pricetype, Video_price, 
+      Video_discount, Video_breviarypicture, Video_site, 
+      Video_chapterTiem, Video_coursetitle)
     values (#{videoCoding,jdbcType=VARCHAR}, #{videoTearch,jdbcType=VARCHAR}, #{videoWatchnumber,jdbcType=VARCHAR}, 
-      #{videoSubject,jdbcType=VARCHAR}, #{videoChapter,jdbcType=VARCHAR}, #{videoIntroduce,jdbcType=VARCHAR}, 
-      #{videoPricetype,jdbcType=VARCHAR}, #{videoPrice,jdbcType=VARCHAR}, #{videoDiscount,jdbcType=VARCHAR}, 
-      #{videoBreviarypicture,jdbcType=VARCHAR}, #{videoSite,jdbcType=VARCHAR})
+      #{videoSuit,jdbcType=VARCHAR}, #{videoSubject,jdbcType=VARCHAR}, #{videoChapter,jdbcType=VARCHAR}, 
+      #{videoIntroduce,jdbcType=VARCHAR}, #{videoPricetype,jdbcType=VARCHAR}, #{videoPrice,jdbcType=VARCHAR}, 
+      #{videoDiscount,jdbcType=VARCHAR}, #{videoBreviarypicture,jdbcType=VARCHAR}, #{videoSite,jdbcType=VARCHAR}, 
+      #{videoChaptertiem,jdbcType=VARCHAR}, #{videoCoursetitle,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="Video_ID" keyProperty="videoId" parameterType="com.rimi.ruiFeng.bean.VideoTable" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -58,6 +63,9 @@
       </if>
       <if test="videoWatchnumber != null">
         Video_Watchnumber,
+      </if>
+      <if test="videoSuit != null">
+        Video_suit,
       </if>
       <if test="videoSubject != null">
         Video_subject,
@@ -83,6 +91,12 @@
       <if test="videoSite != null">
         Video_site,
       </if>
+      <if test="videoChaptertiem != null">
+        Video_chapterTiem,
+      </if>
+      <if test="videoCoursetitle != null">
+        Video_coursetitle,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="videoCoding != null">
@@ -93,6 +107,9 @@
       </if>
       <if test="videoWatchnumber != null">
         #{videoWatchnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="videoSuit != null">
+        #{videoSuit,jdbcType=VARCHAR},
       </if>
       <if test="videoSubject != null">
         #{videoSubject,jdbcType=VARCHAR},
@@ -118,6 +135,12 @@
       <if test="videoSite != null">
         #{videoSite,jdbcType=VARCHAR},
       </if>
+      <if test="videoChaptertiem != null">
+        #{videoChaptertiem,jdbcType=VARCHAR},
+      </if>
+      <if test="videoCoursetitle != null">
+        #{videoCoursetitle,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.rimi.ruiFeng.bean.VideoTable">
@@ -132,6 +155,9 @@
       </if>
       <if test="videoWatchnumber != null">
         Video_Watchnumber = #{videoWatchnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="videoSuit != null">
+        Video_suit = #{videoSuit,jdbcType=VARCHAR},
       </if>
       <if test="videoSubject != null">
         Video_subject = #{videoSubject,jdbcType=VARCHAR},
@@ -157,6 +183,12 @@
       <if test="videoSite != null">
         Video_site = #{videoSite,jdbcType=VARCHAR},
       </if>
+      <if test="videoChaptertiem != null">
+        Video_chapterTiem = #{videoChaptertiem,jdbcType=VARCHAR},
+      </if>
+      <if test="videoCoursetitle != null">
+        Video_coursetitle = #{videoCoursetitle,jdbcType=VARCHAR},
+      </if>
     </set>
     where Video_ID = #{videoId,jdbcType=INTEGER}
   </update>
@@ -166,6 +198,7 @@
     set Video_coding = #{videoCoding,jdbcType=VARCHAR},
       Video_tearch = #{videoTearch,jdbcType=VARCHAR},
       Video_Watchnumber = #{videoWatchnumber,jdbcType=VARCHAR},
+      Video_suit = #{videoSuit,jdbcType=VARCHAR},
       Video_subject = #{videoSubject,jdbcType=VARCHAR},
       Video_chapter = #{videoChapter,jdbcType=VARCHAR},
       Video_introduce = #{videoIntroduce,jdbcType=VARCHAR},
@@ -173,7 +206,9 @@
       Video_price = #{videoPrice,jdbcType=VARCHAR},
       Video_discount = #{videoDiscount,jdbcType=VARCHAR},
       Video_breviarypicture = #{videoBreviarypicture,jdbcType=VARCHAR},
-      Video_site = #{videoSite,jdbcType=VARCHAR}
+      Video_site = #{videoSite,jdbcType=VARCHAR},
+      Video_chapterTiem = #{videoChaptertiem,jdbcType=VARCHAR},
+      Video_coursetitle = #{videoCoursetitle,jdbcType=VARCHAR}
     where Video_ID = #{videoId,jdbcType=INTEGER}
   </update>
 </mapper>

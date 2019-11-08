@@ -7,9 +7,10 @@ import com.rimi.ruiFeng.mapper.CommentTableMapper;
 import com.rimi.ruiFeng.bean.CommentTable;
 
 /**
- *${Description}
- *@author chenjin
- *@date 2019/11/5 13:03
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/5 13:03
  */
 @Service
 public class CommentTableServiceImpl implements CommentTableService {
@@ -48,3 +49,5 @@ public class CommentTableServiceImpl implements CommentTableService {
     }
 
 }
+
+

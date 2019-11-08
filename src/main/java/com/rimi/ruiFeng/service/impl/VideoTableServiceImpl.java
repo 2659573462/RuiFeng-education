@@ -5,13 +5,15 @@ import javax.annotation.Resource;
 import com.rimi.ruiFeng.bean.VideoTable;
 import com.rimi.ruiFeng.mapper.VideoTableMapper;
 import com.rimi.ruiFeng.service.VideoTableService;
+
 /**
- *${Description}
- *@author chenjin
- *@date 2019/11/5 14:17
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/5 14:17
  */
 @Service
-public class VideoTableServiceImpl implements VideoTableService{
+public class VideoTableServiceImpl implements VideoTableService {
 
     @Resource
     private VideoTableMapper videoTableMapper;
@@ -47,3 +49,6 @@ public class VideoTableServiceImpl implements VideoTableService{
     }
 
 }
+
+
+

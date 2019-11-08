@@ -3,9 +3,10 @@ package com.rimi.ruiFeng.mapper;
 import com.rimi.ruiFeng.bean.TearchTable;
 
 /**
- *${Description}
- *@author chenjin
- *@date 2019/11/5 14:17
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/8 11:52
  */
 public interface TearchTableMapper {
     int deleteByPrimaryKey(Integer tearchId);

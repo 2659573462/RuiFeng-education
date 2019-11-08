@@ -4,6 +4,7 @@ import com.rimi.ruiFeng.bean.UserTable;
 import com.rimi.ruiFeng.common.*;
 import com.rimi.ruiFeng.service.LoginService;
 import com.rimi.ruiFeng.util.AcquireOrderForm;
+import com.rimi.ruiFeng.util.PwdUtils;
 import com.rimi.ruiFeng.vo.User;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
@@ -36,11 +37,11 @@ public class LoginController {
         System.out.println(user);
             if(user.getUsername()!=null && user.getPassword()!=null){
                 //生成令牌
-                String orderForm =new AcquireOrderForm().getOrderForm();
+                String uses = PwdUtils.getPwd(user.getUsername());
                 List list = new ArrayList();
-                list.add(orderForm);
                 UserTable userTable = loginService.selectUser(user);
                 if(userTable!=null){
+                    list.add(uses);
                     //传给前端
                     return new DefaultResultData(list);
                 }else{

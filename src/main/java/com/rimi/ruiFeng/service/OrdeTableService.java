@@ -1,12 +1,14 @@
 package com.rimi.ruiFeng.service;
 
 import com.rimi.ruiFeng.bean.OrdeTable;
-    /**
- *${Description}
- *@author chenjin
- *@date 2019/11/5 14:16
+
+/**
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/5 14:16
  */
-public interface OrdeTableService{
+public interface OrdeTableService {
 
 
     int deleteByPrimaryKey(Integer ordeId);
@@ -22,3 +24,4 @@ public interface OrdeTableService{
     int updateByPrimaryKey(OrdeTable record);
 
 }
+

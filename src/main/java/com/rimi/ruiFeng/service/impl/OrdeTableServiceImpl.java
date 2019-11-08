@@ -7,9 +7,10 @@ import com.rimi.ruiFeng.mapper.OrdeTableMapper;
 import com.rimi.ruiFeng.bean.OrdeTable;
 
 /**
- *${Description}
- *@author chenjin
- *@date 2019/11/5 14:16
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/5 14:16
  */
 @Service
 public class OrdeTableServiceImpl implements OrdeTableService {
@@ -48,3 +49,4 @@ public class OrdeTableServiceImpl implements OrdeTableService {
     }
 
 }
+

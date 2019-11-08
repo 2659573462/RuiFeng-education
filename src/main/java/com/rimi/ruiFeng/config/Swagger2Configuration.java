@@ -1,7 +1,10 @@
 package com.rimi.ruiFeng.config;
 
+import lombok.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -18,6 +21,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class Swagger2Configuration {
     //http://localhost:8080/swagger-ui.html
+
+
     @Bean
     public Docket getDocket(){
         return new Docket(DocumentationType.SWAGGER_2)

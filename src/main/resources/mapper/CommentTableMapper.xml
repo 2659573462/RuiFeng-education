@@ -6,12 +6,13 @@
     <!--@Table comment_table-->
     <id column="comment_ID" jdbcType="INTEGER" property="commentId" />
     <result column="comment_coding" jdbcType="VARCHAR" property="commentCoding" />
-    <result column="comment_user" jdbcType="INTEGER" property="commentUser" />
+    <result column="comment_user" jdbcType="VARCHAR" property="commentUser" />
     <result column="comment_time" jdbcType="VARCHAR" property="commentTime" />
+    <result column="comment_content" jdbcType="VARCHAR" property="commentContent" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    comment_ID, comment_coding, comment_user, comment_time
+    comment_ID, comment_coding, comment_user, comment_time, comment_content
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -27,10 +28,10 @@
   </delete>
   <insert id="insert" keyColumn="comment_ID" keyProperty="commentId" parameterType="com.rimi.ruiFeng.bean.CommentTable" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into comment_table (comment_coding, comment_user, comment_time
-      )
-    values (#{commentCoding,jdbcType=VARCHAR}, #{commentUser,jdbcType=INTEGER}, #{commentTime,jdbcType=VARCHAR}
-      )
+    insert into comment_table (comment_coding, comment_user, comment_time, 
+      comment_content)
+    values (#{commentCoding,jdbcType=VARCHAR}, #{commentUser,jdbcType=VARCHAR}, #{commentTime,jdbcType=VARCHAR}, 
+      #{commentContent,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="comment_ID" keyProperty="commentId" parameterType="com.rimi.ruiFeng.bean.CommentTable" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -45,16 +46,22 @@
       <if test="commentTime != null">
         comment_time,
       </if>
+      <if test="commentContent != null">
+        comment_content,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="commentCoding != null">
         #{commentCoding,jdbcType=VARCHAR},
       </if>
       <if test="commentUser != null">
-        #{commentUser,jdbcType=INTEGER},
+        #{commentUser,jdbcType=VARCHAR},
       </if>
       <if test="commentTime != null">
         #{commentTime,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null">
+        #{commentContent,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -66,10 +73,13 @@
         comment_coding = #{commentCoding,jdbcType=VARCHAR},
       </if>
       <if test="commentUser != null">
-        comment_user = #{commentUser,jdbcType=INTEGER},
+        comment_user = #{commentUser,jdbcType=VARCHAR},
       </if>
       <if test="commentTime != null">
         comment_time = #{commentTime,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null">
+        comment_content = #{commentContent,jdbcType=VARCHAR},
       </if>
     </set>
     where comment_ID = #{commentId,jdbcType=INTEGER}
@@ -78,8 +88,9 @@
     <!--@mbg.generated-->
     update comment_table
     set comment_coding = #{commentCoding,jdbcType=VARCHAR},
-      comment_user = #{commentUser,jdbcType=INTEGER},
-      comment_time = #{commentTime,jdbcType=VARCHAR}
+      comment_user = #{commentUser,jdbcType=VARCHAR},
+      comment_time = #{commentTime,jdbcType=VARCHAR},
+      comment_content = #{commentContent,jdbcType=VARCHAR}
     where comment_ID = #{commentId,jdbcType=INTEGER}
   </update>
 </mapper>

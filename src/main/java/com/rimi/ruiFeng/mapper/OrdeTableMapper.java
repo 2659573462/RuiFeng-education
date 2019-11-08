@@ -3,9 +3,10 @@ package com.rimi.ruiFeng.mapper;
 import com.rimi.ruiFeng.bean.OrdeTable;
 
 /**
- *${Description}
- *@author chenjin
- *@date 2019/11/5 14:16
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/8 16:05
  */
 public interface OrdeTableMapper {
     int deleteByPrimaryKey(Integer ordeId);
