@@ -12,6 +12,18 @@ public enum ResultCode {
      */
     SUCCESS(200, "成功"),
     /**
+     * 失败
+     */
+    FAIL(201, "失败"),
+    /**
+     * 账号已经存在
+     */
+    ALREADYEXIST(202,"账号已经存在"),
+    /**
+     * 账号不存在
+     */
+    INEXISTENCE(203,"账号不存在"),
+    /**
      *发送失败
      */
     SUCCESSCDEFEATED(204,"发送失败"),
@@ -19,10 +31,6 @@ public enum ResultCode {
      * 短消息发送成功
      */
     SUCCESSC(205,"发送成功"),
-    /**
-     * 账号已经存在
-     */
-    ALREADYEXIST(206,"账号已经存在"),
     /**
      *账号注册成功
      */
@@ -32,10 +40,13 @@ public enum ResultCode {
      */
     ACCOUNTNUMBERDEFEATED(208,"账号注册失败"),
     /**
-     * 失败
+     * 登录成功
      */
-    FAIL(201, "失败"),
-
+    LOGIN_SUCCEED(210,"登录成功"),
+    /**
+     * 登录失败
+     */
+    LOGIN_DEFEATED(212,"登录失败"),
     /**
      * 方法未找到
      */
@@ -48,6 +59,10 @@ public enum ResultCode {
      * 当前方法位为注册验证
      */
     NOT_SUPPORT_REGISTER(406, "当前方法位为注册验证"),
+    /**
+     * 当前方法位为登录验证
+     */
+    NOT_SUPPORT_LOGIN(408, "当前方法位为登录验证"),
     /**
      * 服务器异常
      */

@@ -5,6 +5,7 @@ import com.rimi.ruiFeng.mapper.CommentTableMapper;
 import com.rimi.ruiFeng.mapper.UserTableMapper;
 import com.rimi.ruiFeng.service.LoginService;
 import com.rimi.ruiFeng.service.UserTableService;
+import com.rimi.ruiFeng.util.PwdUtils;
 import com.rimi.ruiFeng.vo.User;
 import org.springframework.stereotype.Service;
 
@@ -27,9 +28,8 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public UserTable selectUser(User user) {
-        UserTable u = userTableService.selectUser(user.getUsername(),user.getPassword());
+        UserTable u = userTableService.selectUser(PwdUtils.getPwd(user.getUsername()),PwdUtils.getPwd(user.getPassword()));
         return u;
     }
-
 
 }

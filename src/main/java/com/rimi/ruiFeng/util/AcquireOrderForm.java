@@ -24,7 +24,7 @@ public class AcquireOrderForm {
      * (截取当前的时间戳然后截取前128位加密)
      * @return
      */
-    public  String getOrderForm(){
+    public static  String getOrderForm(){
         Date date = new Date();
         SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
         String hehe = dateFormat.format(date);

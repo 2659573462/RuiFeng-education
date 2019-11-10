@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @author chenjin
  * @date 2019/11/8 18:07
  */
-@Api(tags = "获取数据")
+@Api(tags = "登录获取的数据")
 @CrossOrigin
 @RestController
-public class GetData {
+public class LoginGetData {
 
 
 

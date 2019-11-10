@@ -26,5 +26,5 @@ public interface MessageTableService{
     int updateMobile(String numbers,String verify);
 
 
-        MessageTable selectMobileAndVerificationoCde(String telephoneNumber, String authCode);
+    MessageTable selectMobileAndVerificationoCde(String telephoneNumber, String authCode);
     }

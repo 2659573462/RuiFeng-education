@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rimi.ruiFeng.mapper.CourseintroductionTableMapper">
+  <resultMap id="BaseResultMap" type="com.rimi.ruiFeng.bean.CourseintroductionTable">
+    <!--@mbg.generated-->
+    <!--@Table courseintroduction_table-->
+    <id column="CourseIntroduction_id" jdbcType="INTEGER" property="courseintroductionId" />
+    <result column="CourseIntroduction_Type" jdbcType="VARCHAR" property="courseintroductionType" />
+    <result column="CourseIntroduction_narrate" jdbcType="VARCHAR" property="courseintroductionNarrate" />
+    <result column="CourseIntroduction_summarize" jdbcType="VARCHAR" property="courseintroductionSummarize" />
+    <result column="CourseIntroduction_application" jdbcType="VARCHAR" property="courseintroductionApplication" />
+    <result column="CourseIntroduction_significance" jdbcType="VARCHAR" property="courseintroductionSignificance" />
+    <result column="CourseIntroduction_university" jdbcType="VARCHAR" property="courseintroductionUniversity" />
+    <result column="CourseIntroduction_distinction" jdbcType="VARCHAR" property="courseintroductionDistinction" />
+    <result column="CourseIntroduction_grade" jdbcType="VARCHAR" property="courseintroductionGrade" />
+    <result column="CourseIntroduction_Boutique" jdbcType="VARCHAR" property="courseintroductionBoutique" />
+    <result column="CourseIntroduction_teacher" jdbcType="VARCHAR" property="courseintroductionTeacher" />
+    <result column="CourseIntroduction_watchnumber" jdbcType="VARCHAR" property="courseintroductionWatchnumber" />
+    <result column="CourseIntroduction_price" jdbcType="VARCHAR" property="courseintroductionPrice" />
+    <result column="CourseIntroduction_discount" jdbcType="VARCHAR" property="courseintroductionDiscount" />
+    <result column="CourseIntroduction_breviarypictyre" jdbcType="VARCHAR" property="courseintroductionBreviarypictyre" />
+    <result column="CourseIntroduction_totaltime" jdbcType="VARCHAR" property="courseintroductionTotaltime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    CourseIntroduction_id, CourseIntroduction_Type, CourseIntroduction_narrate, CourseIntroduction_summarize, 
+    CourseIntroduction_application, CourseIntroduction_significance, CourseIntroduction_university, 
+    CourseIntroduction_distinction, CourseIntroduction_grade, CourseIntroduction_Boutique, 
+    CourseIntroduction_teacher, CourseIntroduction_watchnumber, CourseIntroduction_price, 
+    CourseIntroduction_discount, CourseIntroduction_breviarypictyre, CourseIntroduction_totaltime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from courseintroduction_table
+    where CourseIntroduction_id = #{courseintroductionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from courseintroduction_table
+    where CourseIntroduction_id = #{courseintroductionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="CourseIntroduction_id" keyProperty="courseintroductionId" parameterType="com.rimi.ruiFeng.bean.CourseintroductionTable" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into courseintroduction_table (CourseIntroduction_Type, CourseIntroduction_narrate, 
+      CourseIntroduction_summarize, CourseIntroduction_application, 
+      CourseIntroduction_significance, CourseIntroduction_university, 
+      CourseIntroduction_distinction, CourseIntroduction_grade, 
+      CourseIntroduction_Boutique, CourseIntroduction_teacher, 
+      CourseIntroduction_watchnumber, CourseIntroduction_price, 
+      CourseIntroduction_discount, CourseIntroduction_breviarypictyre, 
+      CourseIntroduction_totaltime)
+    values (#{courseintroductionType,jdbcType=VARCHAR}, #{courseintroductionNarrate,jdbcType=VARCHAR}, 
+      #{courseintroductionSummarize,jdbcType=VARCHAR}, #{courseintroductionApplication,jdbcType=VARCHAR}, 
+      #{courseintroductionSignificance,jdbcType=VARCHAR}, #{courseintroductionUniversity,jdbcType=VARCHAR}, 
+      #{courseintroductionDistinction,jdbcType=VARCHAR}, #{courseintroductionGrade,jdbcType=VARCHAR}, 
+      #{courseintroductionBoutique,jdbcType=VARCHAR}, #{courseintroductionTeacher,jdbcType=VARCHAR}, 
+      #{courseintroductionWatchnumber,jdbcType=VARCHAR}, #{courseintroductionPrice,jdbcType=VARCHAR}, 
+      #{courseintroductionDiscount,jdbcType=VARCHAR}, #{courseintroductionBreviarypictyre,jdbcType=VARCHAR}, 
+      #{courseintroductionTotaltime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="CourseIntroduction_id" keyProperty="courseintroductionId" parameterType="com.rimi.ruiFeng.bean.CourseintroductionTable" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into courseintroduction_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseintroductionType != null">
+        CourseIntroduction_Type,
+      </if>
+      <if test="courseintroductionNarrate != null">
+        CourseIntroduction_narrate,
+      </if>
+      <if test="courseintroductionSummarize != null">
+        CourseIntroduction_summarize,
+      </if>
+      <if test="courseintroductionApplication != null">
+        CourseIntroduction_application,
+      </if>
+      <if test="courseintroductionSignificance != null">
+        CourseIntroduction_significance,
+      </if>
+      <if test="courseintroductionUniversity != null">
+        CourseIntroduction_university,
+      </if>
+      <if test="courseintroductionDistinction != null">
+        CourseIntroduction_distinction,
+      </if>
+      <if test="courseintroductionGrade != null">
+        CourseIntroduction_grade,
+      </if>
+      <if test="courseintroductionBoutique != null">
+        CourseIntroduction_Boutique,
+      </if>
+      <if test="courseintroductionTeacher != null">
+        CourseIntroduction_teacher,
+      </if>
+      <if test="courseintroductionWatchnumber != null">
+        CourseIntroduction_watchnumber,
+      </if>
+      <if test="courseintroductionPrice != null">
+        CourseIntroduction_price,
+      </if>
+      <if test="courseintroductionDiscount != null">
+        CourseIntroduction_discount,
+      </if>
+      <if test="courseintroductionBreviarypictyre != null">
+        CourseIntroduction_breviarypictyre,
+      </if>
+      <if test="courseintroductionTotaltime != null">
+        CourseIntroduction_totaltime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseintroductionType != null">
+        #{courseintroductionType,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionNarrate != null">
+        #{courseintroductionNarrate,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionSummarize != null">
+        #{courseintroductionSummarize,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionApplication != null">
+        #{courseintroductionApplication,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionSignificance != null">
+        #{courseintroductionSignificance,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionUniversity != null">
+        #{courseintroductionUniversity,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionDistinction != null">
+        #{courseintroductionDistinction,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionGrade != null">
+        #{courseintroductionGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionBoutique != null">
+        #{courseintroductionBoutique,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionTeacher != null">
+        #{courseintroductionTeacher,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionWatchnumber != null">
+        #{courseintroductionWatchnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionPrice != null">
+        #{courseintroductionPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionDiscount != null">
+        #{courseintroductionDiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionBreviarypictyre != null">
+        #{courseintroductionBreviarypictyre,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionTotaltime != null">
+        #{courseintroductionTotaltime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.ruiFeng.bean.CourseintroductionTable">
+    <!--@mbg.generated-->
+    update courseintroduction_table
+    <set>
+      <if test="courseintroductionType != null">
+        CourseIntroduction_Type = #{courseintroductionType,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionNarrate != null">
+        CourseIntroduction_narrate = #{courseintroductionNarrate,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionSummarize != null">
+        CourseIntroduction_summarize = #{courseintroductionSummarize,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionApplication != null">
+        CourseIntroduction_application = #{courseintroductionApplication,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionSignificance != null">
+        CourseIntroduction_significance = #{courseintroductionSignificance,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionUniversity != null">
+        CourseIntroduction_university = #{courseintroductionUniversity,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionDistinction != null">
+        CourseIntroduction_distinction = #{courseintroductionDistinction,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionGrade != null">
+        CourseIntroduction_grade = #{courseintroductionGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionBoutique != null">
+        CourseIntroduction_Boutique = #{courseintroductionBoutique,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionTeacher != null">
+        CourseIntroduction_teacher = #{courseintroductionTeacher,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionWatchnumber != null">
+        CourseIntroduction_watchnumber = #{courseintroductionWatchnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionPrice != null">
+        CourseIntroduction_price = #{courseintroductionPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionDiscount != null">
+        CourseIntroduction_discount = #{courseintroductionDiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionBreviarypictyre != null">
+        CourseIntroduction_breviarypictyre = #{courseintroductionBreviarypictyre,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionTotaltime != null">
+        CourseIntroduction_totaltime = #{courseintroductionTotaltime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CourseIntroduction_id = #{courseintroductionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.ruiFeng.bean.CourseintroductionTable">
+    <!--@mbg.generated-->
+    update courseintroduction_table
+    set CourseIntroduction_Type = #{courseintroductionType,jdbcType=VARCHAR},
+      CourseIntroduction_narrate = #{courseintroductionNarrate,jdbcType=VARCHAR},
+      CourseIntroduction_summarize = #{courseintroductionSummarize,jdbcType=VARCHAR},
+      CourseIntroduction_application = #{courseintroductionApplication,jdbcType=VARCHAR},
+      CourseIntroduction_significance = #{courseintroductionSignificance,jdbcType=VARCHAR},
+      CourseIntroduction_university = #{courseintroductionUniversity,jdbcType=VARCHAR},
+      CourseIntroduction_distinction = #{courseintroductionDistinction,jdbcType=VARCHAR},
+      CourseIntroduction_grade = #{courseintroductionGrade,jdbcType=VARCHAR},
+      CourseIntroduction_Boutique = #{courseintroductionBoutique,jdbcType=VARCHAR},
+      CourseIntroduction_teacher = #{courseintroductionTeacher,jdbcType=VARCHAR},
+      CourseIntroduction_watchnumber = #{courseintroductionWatchnumber,jdbcType=VARCHAR},
+      CourseIntroduction_price = #{courseintroductionPrice,jdbcType=VARCHAR},
+      CourseIntroduction_discount = #{courseintroductionDiscount,jdbcType=VARCHAR},
+      CourseIntroduction_breviarypictyre = #{courseintroductionBreviarypictyre,jdbcType=VARCHAR},
+      CourseIntroduction_totaltime = #{courseintroductionTotaltime,jdbcType=VARCHAR}
+    where CourseIntroduction_id = #{courseintroductionId,jdbcType=INTEGER}
+  </update>
+    <select id="selectType" resultMap="BaseResultMap">
+      select *
+      from courseintroduction_table where CourseIntroduction_Boutique=#{type};
+    </select>
+</mapper>

@@ -52,10 +52,10 @@ public class SmsPushUtil {
     public AbstractResult getMessageCode(@RequestBody  MessageTable messageTable) {
         System.out.println("手机号是"+messageTable.getMessageMobile());
         String ssm = getSsm(messageTable.getMessageMobile());
+        System.out.println("状态"+ssm);
         //判断发送是否成功
         if (ssm!=null){
             MessageTable messageTable1 = messageTables.selectMobile(messageTable.getMessageMobile());
-
             //手机存在然后将动态验证存储
             if(messageTable1!=null){
                 int i = messageTables.updateMobile(messageTable.getMessageMobile(), codes);
@@ -107,7 +107,7 @@ public class SmsPushUtil {
         //必填:待发送手机号
         request.setPhoneNumbers(number);
         //必填:短信签名-可在短信控制台中找到，你在签名管理里的内容
-        request.setSignName("瑞峰在线教育平台");
+        request.setSignName("芮米在线教育平台");
         //必填:短信模板-可在短信控制台中找到，你模板管理里的模板编号
         request.setTemplateCode("SMS_176938022");
         //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为

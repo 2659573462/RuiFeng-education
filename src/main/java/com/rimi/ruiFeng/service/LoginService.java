@@ -10,6 +10,11 @@ import com.rimi.ruiFeng.vo.User;
  * @date 2019/11/6 19:38
  */
 public interface LoginService {
-
+    /**
+     * 账号密码查用户
+     * @param user
+     * @return
+     */
     UserTable selectUser(User user);
+
 }

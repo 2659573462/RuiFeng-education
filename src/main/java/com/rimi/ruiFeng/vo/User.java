@@ -12,6 +12,12 @@ import org.apache.ibatis.annotations.Param;
  */
 @Data
 public class User {
+    /**
+     * 账号
+     */
     public String username;
+    /**
+     * 密码
+     */
     public String password;
 }

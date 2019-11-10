@@ -25,6 +25,11 @@ public abstract class AbstractResultData extends AbstractResult implements Resul
         this.secretKey = secretKey;
     }
 
+    public AbstractResultData(Object secretKey,ResultCode resultCode){
+        super(resultCode.getCode(),resultCode.getMessage());
+        this.secretKey = secretKey;
+    }
+
     @Override
     public Object getData() {
         return secretKey;
