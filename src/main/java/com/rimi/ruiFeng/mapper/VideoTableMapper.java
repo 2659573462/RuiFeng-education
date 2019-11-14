@@ -1,6 +1,10 @@
 package com.rimi.ruiFeng.mapper;
 
+import com.rimi.ruiFeng.bean.CourseintroductionTable;
 import com.rimi.ruiFeng.bean.VideoTable;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * ${Description}
@@ -20,4 +24,10 @@ public interface VideoTableMapper {
     int updateByPrimaryKeySelective(VideoTable record);
 
     int updateByPrimaryKey(VideoTable record);
+
+    List<VideoTable> selectAllVideoData();
+
+    List<VideoTable> selectAllSuit(String parameter);
+
+    List<VideoTable> selectAllSuitComment(@Param("parameter") String parameter);
 }

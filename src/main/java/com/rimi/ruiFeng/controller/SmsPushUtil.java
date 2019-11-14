@@ -9,10 +9,14 @@ import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 import com.rimi.ruiFeng.bean.MessageTable;
+import com.rimi.ruiFeng.bean.UserTable;
 import com.rimi.ruiFeng.common.*;
 import com.rimi.ruiFeng.service.LoginService;
 import com.rimi.ruiFeng.service.MessageTableService;
 import com.rimi.ruiFeng.service.impl.MessageTableServiceImpl;
+import com.rimi.ruiFeng.service.impl.UserTableServiceImpl;
+import com.rimi.ruiFeng.util.UtilString;
+import com.rimi.ruiFeng.vo.messageCode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -21,6 +25,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
+
+import java.util.Date;
 
 @Controller
 @CrossOrigin
@@ -36,20 +42,23 @@ public class SmsPushUtil {
     static final String accessKeySecret = "jfWg4SZqq8X0oNJAvNmBGf051Zs6Ah";
 
     public  MessageTableService messageTables;
+    private final UserTableServiceImpl userTableService;
 
-    public SmsPushUtil(MessageTableService messageTables){
+    public SmsPushUtil(MessageTableService messageTables,UserTableServiceImpl userTableService){
         this.messageTables=messageTables;
+        this.userTableService=userTableService;
     }
 
     /**
-     * 验证验证码是否正确
      *
+     *发送验证码
      * @return 返回验证码是否正确的消息结果
      */
-    @ApiOperation(value = "判断验证码是否正确")
+    @ApiOperation(value = "注册发送验证码")
     @ResponseBody
     @PostMapping("/messageCode")
-    public AbstractResult getMessageCode(@RequestBody  MessageTable messageTable) {
+    public AbstractResult getMessageCode(@RequestBody MessageTable messageTable) {
+
         System.out.println("手机号是"+messageTable.getMessageMobile());
         String ssm = getSsm(messageTable.getMessageMobile());
         System.out.println("状态"+ssm);
@@ -58,16 +67,78 @@ public class SmsPushUtil {
             MessageTable messageTable1 = messageTables.selectMobile(messageTable.getMessageMobile());
             //手机存在然后将动态验证存储
             if(messageTable1!=null){
-                int i = messageTables.updateMobile(messageTable.getMessageMobile(), codes);
+                messageTable.setMessageTime(String.valueOf(System.currentTimeMillis()));
+                int i = messageTables.updateMobile(messageTable.getMessageMobile(), codes,messageTable.getMessageTime());
                 return i>0?new DefaultResult(ResultCode.SUCCESSC):new DefaultResult(ResultCode.SUCCESSCDEFEATED);
             }else{
+                //存入时间
                 messageTable.setMessageVerifcationcode(codes);
+                //存入时间
+                messageTable.setMessageTime(String.valueOf(System.currentTimeMillis()));
                 int insert = messageTables.insert(messageTable);
                 return insert>0?new DefaultResult(ResultCode.SUCCESSC):new DefaultResult(ResultCode.SUCCESSCDEFEATED);
             }
         }
         return new DefaultResult(ResultCode.SUCCESSCDEFEATED);
     }
+
+    @ApiOperation(value = "修改手机号,验证码验证码是否过期")
+    @PostMapping("/updateUserTellphonenumber")
+    private Result loginPhoneVerification(@RequestBody messageCode mesCode){
+        System.out.println(mesCode);
+        //messageCode(id=0, mobile=15828222728, verificationCode=303525, state=修改, verification=cO3xJ4w9NBZeSXABG0OnTlrtXUS0XDG5ysMMd3gu9N0=,OdWO9N895e+Hjdu7EXn4vsE4OjJcyIa5mYsG42iHJbU=)
+        if(mesCode.getMobile()!=null&&mesCode.getVerificationCode()!=null&&mesCode.getState()!=null){
+            if(!mesCode.getState().equals("修改")){
+                return  new DefaultResult(ResultCode.NOT_SUPPORT_LOGIN);
+            }else{
+                //查询手机是否存在
+                String verificationCode = mesCode.getVerificationCode();
+                MessageTable messageTable = messageTables.selectMobileAndVerificationoCde(mesCode.getMobile(),verificationCode);
+                if(messageTable==null){
+                    System.out.println("不存在");
+                    //原因是中途更换账号
+                    return new DefaultResult(ResultCode.FAIL);
+                }else{
+                    System.out.println("验证通过");
+                    //检测账号是否存在
+                    String verification1 = mesCode.getVerification();
+                    String[] strings1 = UtilString.InterceptString(verification1);
+                    UserTable userTable = userTableService.selectUsername(strings1[0]);
+                    if(userTable==null){
+                        return new DefaultResult(ResultCode.INEXISTENCE);
+                    }else{
+                        Long s = Long.valueOf("3000000");
+                        MessageTable messageTable1 = messageTables.selectMobile(mesCode.getMobile());
+                        System.out.println(messageTable1.getMessageTime());
+                        Date date = new Date(Long.parseLong(String.valueOf(messageTable1.getMessageTime()))-s);
+                        Date d2 = new Date(System.currentTimeMillis());
+                        if((date.compareTo(d2))<0){
+                            //把验证码和时间便空
+                            int i = messageTables.updateMobile(mesCode.getMobile(), "","");
+                            //检测需要加入的手机是否已经存在
+                            UserTable userTable1 = userTableService.selectMobile(mesCode.getMobile());
+                            if(userTable1!=null){
+                                return new DefaultResult(ResultCode.ALREADYEXIST);
+                            }
+                            int j =userTableService.updatePhoneVerification(strings1[0],mesCode.getMobile());
+                            if(j>0){
+                                return new DefaultResult(ResultCode.SUCCESS);
+                            }else{
+                                return new DefaultResult(ResultCode.FAIL);
+                            }
+                        }else{
+                            return new DefaultResult(ResultCode.ERROR_VERIFICATION_PAST_DUE);
+                        }
+
+                    }
+                }
+            }
+        }else{
+            return new DefaultResult(ResultCode.ERROR_PARAMETER);
+        }
+    }
+
+
 
 
     public static void main(String[] args) {
@@ -109,7 +180,7 @@ public class SmsPushUtil {
         //必填:短信签名-可在短信控制台中找到，你在签名管理里的内容
         request.setSignName("芮米在线教育平台");
         //必填:短信模板-可在短信控制台中找到，你模板管理里的模板编号
-        request.setTemplateCode("SMS_176938022");
+        request.setTemplateCode("SMS_177257441");
         //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
         request.setTemplateParam("{\"code\":\"" + code + "\"}");
 

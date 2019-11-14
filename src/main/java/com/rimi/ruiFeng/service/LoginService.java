@@ -2,6 +2,7 @@ package com.rimi.ruiFeng.service;
 
 import com.rimi.ruiFeng.bean.UserTable;
 import com.rimi.ruiFeng.vo.User;
+import org.springframework.stereotype.Service;
 
 /**
  * 登录验证
@@ -9,6 +10,7 @@ import com.rimi.ruiFeng.vo.User;
  * @author chenjin
  * @date 2019/11/6 19:38
  */
+@Service
 public interface LoginService {
     /**
      * 账号密码查用户

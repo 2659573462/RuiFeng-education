@@ -6,7 +6,7 @@ import lombok.Data;
  * ${Description}
  *
  * @author chenjin
- * @date 2019/11/8 15:37
+ * @date 2019/11/14 1:54
  */
 @Data
 public class VideotimeTable {
@@ -28,5 +28,10 @@ public class VideotimeTable {
     /**
      * 用户id
      */
-    private String videoUser;
+    private String videotimeUser;
+
+    /**
+     * 属于那一套
+     */
+    private String videotimeCourseintroduction;
 }

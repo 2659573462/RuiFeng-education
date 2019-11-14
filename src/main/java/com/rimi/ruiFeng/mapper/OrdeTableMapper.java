@@ -20,4 +20,6 @@ public interface OrdeTableMapper {
     int updateByPrimaryKeySelective(OrdeTable record);
 
     int updateByPrimaryKey(OrdeTable record);
+
+    OrdeTable selectUsername(String userName);
 }

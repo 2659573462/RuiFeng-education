@@ -5,9 +5,18 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.response.AlipayTradePagePayResponse;
+import com.rimi.ruiFeng.bean.CourseintroductionTable;
+import com.rimi.ruiFeng.bean.ShopTable;
+import com.rimi.ruiFeng.bean.UserTable;
 import com.rimi.ruiFeng.service.VideoTableService;
+import com.rimi.ruiFeng.service.impl.CourseintroductionTableServiceImpl;
+import com.rimi.ruiFeng.service.impl.ShopTableServiceImpl;
+import com.rimi.ruiFeng.service.impl.UserTableServiceImpl;
 import com.rimi.ruiFeng.util.AcquireOrderForm;
+import com.rimi.ruiFeng.util.UtilString;
+import com.rimi.ruiFeng.vo.SoppingVo;
 import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +38,20 @@ import java.io.IOException;
 @RestController
 public class ProceedsController {
 
+    @Autowired
     public VideoTableService videoTableMapper;
 
+    @Autowired
+    public CourseintroductionTableServiceImpl courseintroductionTableServiceImpl;
+
+    @Autowired
+    public UserTableServiceImpl UserTableServiceImpl;
+
+    @Autowired
+    public ShopTableServiceImpl  shopTableServiceImpl;
+
+    private String ds ;
+    private int df ;
 
 
 
@@ -39,11 +60,11 @@ public class ProceedsController {
 
     //@PostMapping("/purchase")
     @GetMapping("/purchase")
-    public void payment(HttpServletRequest request, HttpServletResponse response,String videoId) throws IOException {
-
+    public  void  payment(SoppingVo videoId,HttpServletRequest requests, HttpServletResponse response) throws IOException {
+        System.out.println("支付"+videoId);
         //生成订单
-        String orderForm =new AcquireOrderForm().getOrderForm();
-        String orderForm1 =new AcquireOrderForm().getOrderForm();
+        String orderForm =AcquireOrderForm.getOrderForm();
+        String orderForm1 =AcquireOrderForm.getOrderForm();
         AlipayClient alipayClient = new DefaultAlipayClient(
                 "https://openapi.alipaydev.com/gateway.do",
                 "2016101700704246",
@@ -54,22 +75,22 @@ public class ProceedsController {
                 "RSA2");
 
 
-        //获得初始化的AlipayClient
 
-        //获取当前请求过来的地址
-        String urls=request.getRequestURL().toString();
+
+
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
-        alipayRequest.setReturnUrl("https://www.baidu.com/?tn=44004473_2_oem_dg");
-        alipayRequest.setNotifyUrl("https://www.baidu.com/?tn=44004473_2_oem_dg");//在公共参数中设置回跳和通知地址
+           //http://10.2.5.17:8080/my-lesson
+        alipayRequest.setReturnUrl(videoId.getCommoditys());
+        alipayRequest.setNotifyUrl(videoId.getCommoditys());//在公共参数中设置回跳和通知地址
 
 
 
         alipayRequest.setBizContent("{" +
                 "    \"out_trade_no\":\""+orderForm+"\"," +
                 "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," +
-                "    \"total_amount\":8888," +
-                "    \"subject\":\""+videoId+"\"," +
-                "    \"body\":\""+videoId+"\"," +
+                "    \"total_amount\":\""+df+"\","+
+                "    \"subject\":\""+ds+"\"," +
+                "    \"body\":\""+ds+"\"," +
                 "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," +
                 "    \"extend_params\":{" +
                 "    \"sys_service_provider_id\":\""+orderForm1+"\"" +
@@ -81,6 +102,53 @@ public class ProceedsController {
             AlipayTradePagePayResponse responses = alipayClient.pageExecute(alipayRequest);
             if(responses.isSuccess()){
                 System.out.println("调用成功");
+                //获得初始化的videoId
+                //支付成功跳转的地址
+                String commoditys = videoId.getCommoditys();
+                System.out.println("地址"+commoditys);
+
+                //获取用户民
+                String verification = videoId.getVerification();
+                String[] strings = UtilString.InterceptString(verification);
+                //搜索用户
+                UserTable userTable = UserTableServiceImpl.selectUsername(strings[0]);
+                //获取他购物车的id
+                String userShopcartId = userTable.getUserShopcart();
+                //通过id查找购物车
+                ShopTable shopTable = shopTableServiceImpl.selectByPrimaryKey(Integer.valueOf(userShopcartId));
+
+                //删除购物车内已经添加的商品
+                String shopcartOrderid = shopTable.getShopcartOrderid();
+                //购物车内容 :数组是购物车内容
+                String[] strings1 = UtilString.InterceptString(shopcartOrderid);
+                String f = "";
+                int d = 0;
+                for (int i = 0; i <strings1.length; i++) {
+                    CourseintroductionTable courseintroductionTable = courseintroductionTableServiceImpl.selectDistinction(strings1[i]);
+                    f=f+","+courseintroductionTable.getCourseintroductionNarrate();
+                    d=d+Integer.parseInt(courseintroductionTable.getCourseintroductionPrice());
+                }
+                df = d ;
+                // 数组是:要删除的商品
+                String[] commoditysSopping = videoId.getCommoditysSopping();
+                //循环删除
+                String s = shopcartOrderid;
+                for (int i = 0; i <strings1.length; i++) {
+                    for (int j = 0; j < videoId.getCommoditysSopping().length; j++) {
+                        //相同就删除
+                        if(strings1[i].equals(commoditysSopping[j])){
+                            strings1[i]="";
+                            String userByvideo = userTable.getUserByvideo();
+                            System.out.println("增加以前"+userByvideo);
+                            userByvideo = userByvideo + "," + commoditysSopping[j];
+                            System.out.println("增加以后"+userByvideo);
+                            s=userByvideo;
+                        }
+                    }
+                }
+                ds = s;
+                //修改用户已经拥有
+                int i = UserTableServiceImpl.updateByVideo(userTable.getUserUsername(), s);
             } else {
                 System.out.println("调用失败");
             }

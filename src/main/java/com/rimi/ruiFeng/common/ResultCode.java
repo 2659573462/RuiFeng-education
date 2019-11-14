@@ -8,6 +8,10 @@ package com.rimi.ruiFeng.common;
  */
 public enum ResultCode {
     /**
+     * 叙述
+     */
+    DESCRIPTION(000,"叙述"),
+    /**
      * 成功
      */
     SUCCESS(200, "成功"),
@@ -48,6 +52,18 @@ public enum ResultCode {
      */
     LOGIN_DEFEATED(212,"登录失败"),
     /**
+     * 以加入购物车
+     */
+    HAVE_ALREADY_PURCHASED(220,"宝贝已存在,请去购物车结算"),
+    /**
+     * 商品不存在
+     */
+    PRODUCT_DOES_NOT_EXIST(225,"商品不存在"),
+    /**
+     * 已购买
+     */
+    BOUGHT(230,"已经购买"),
+    /**
      * 方法未找到
      */
     NOT_FOUND_METHOD(404, "方法未找到"),
@@ -64,6 +80,14 @@ public enum ResultCode {
      */
     NOT_SUPPORT_LOGIN(408, "当前方法位为登录验证"),
     /**
+     * 还没有加入购物车
+     */
+    NOT_NOSOPPING(410,"还没有购买商品"),
+    /**
+     * 购物车空空如也
+     */
+    NOT_NOSOPPINGS(415,"购物车空空如也"),
+    /**
      * 服务器异常
      */
     ERROR(500, "服务器异常"),
@@ -74,7 +98,20 @@ public enum ResultCode {
     /**
      * 验证码不正确
      */
-    ERROR_VERIFICATION_CODE_INCORRECT(510,"验证码不正确");
+    ERROR_VERIFICATION_CODE_INCORRECT(510,"验证码不正确"),
+    /**
+     * 验证码过期
+     */
+    ERROR_VERIFICATION_PAST_DUE(515,"验证码过期"),
+    /**
+     * 状态码已过期
+     */
+    ERROR_VERIFICATION_Expired(520,"状态码已过期"),
+    /**
+     * 服务器繁忙
+     */
+    ERROR_BUSY_SERVER(525,"服务器繁忙")
+    ;
 
     private int code;
     private String message;

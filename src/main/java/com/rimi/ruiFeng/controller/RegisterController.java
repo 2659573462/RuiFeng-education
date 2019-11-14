@@ -1,9 +1,11 @@
 package com.rimi.ruiFeng.controller;
 
 import com.rimi.ruiFeng.bean.MessageTable;
+import com.rimi.ruiFeng.bean.ShopTable;
 import com.rimi.ruiFeng.bean.UserTable;
 import com.rimi.ruiFeng.common.*;
 import com.rimi.ruiFeng.service.MessageTableService;
+import com.rimi.ruiFeng.service.ShopTableService;
 import com.rimi.ruiFeng.service.impl.RegisterServiceImpl;
 import com.rimi.ruiFeng.service.impl.UserTableServiceImpl;
 import com.rimi.ruiFeng.util.AcquireOrderForm;
@@ -12,12 +14,14 @@ import com.rimi.ruiFeng.vo.RegistUserVo;
 import com.rimi.ruiFeng.vo.messageCode;
 import io.swagger.annotations.Api;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.rimi.ruiFeng.common.ResultCode.ALREADYEXIST;
@@ -31,16 +35,20 @@ import static com.rimi.ruiFeng.common.ResultCode.ALREADYEXIST;
 @Api(tags = "注册")
 @CrossOrigin
 @RestController
+@Transactional(rollbackFor = Exception.class)
 public class RegisterController {
 
     private final RegisterServiceImpl registerService;
     private final UserTableServiceImpl userTableService;
     private final MessageTableService messageTables;
+    private final ShopTableService  shopTableService;
 
-    public RegisterController(RegisterServiceImpl registerService,UserTableServiceImpl userTableService,MessageTableService messageTables){
+    public RegisterController(RegisterServiceImpl registerService,UserTableServiceImpl userTableService,
+                              MessageTableService messageTables, ShopTableService  shopTableService){
         this.registerService= registerService;
         this.userTableService =userTableService ;
         this.messageTables=messageTables;
+        this.shopTableService=shopTableService;
     }
 
     /**
@@ -61,12 +69,27 @@ public class RegisterController {
                         MessageTable messageTable=messageTables.selectMobileAndVerificationoCde(registUserVo.getTelephoneNumber(),registUserVo.getAuthCode());
                         //验证验证是否正确
                         if(messageTable!=null ){
-                            int i = registerService.insertUser(registUserVo);
+                            String use = PwdUtils.getPwd(registUserVo.getUsername());
+                            //为用户生成购物车
+                            ShopTable shopTable = new ShopTable();
+                            shopTable.setShopAccountnumber(use);
+                            int insert = shopTableService.insert(shopTable);
+                            //查询购物车
+                            ShopTable shop=shopTableService.selectAccountnumber(use);
+                            Integer shopId = shop.getShopId();
+                            //生成用户
+                            int i = registerService.insertUser(shopId,registUserVo);
                             if(i>0){
                                 //生成令牌
-                                String uses = PwdUtils.getPwd(AcquireOrderForm.getOrderForm());
+                                String correction =  null;
+                                correction =use+","+ PwdUtils.getPwd(AcquireOrderForm.getOrderForm());
+                                //截取时间
+                                //String.valueOf(System.currentTimeMillis())
                                 List list = new ArrayList();
-                                list.add(uses);
+                                list.add(correction);
+                                //将生成的令牌状态吗传入数据库
+                                int i1=userTableService.updateByCorrection(PwdUtils.getPwd(registUserVo.getUsername()),correction);
+
                                 //成功200
                                 return  new DefaultResultData(list);
                             }else{
@@ -94,7 +117,7 @@ public class RegisterController {
         MessageTable messageTable1 = new MessageTable();
         //添加手机号到发送短信的对象
         messageTable1.setMessageMobile(mesCode.getMobile());
-        SmsPushUtil smsPushUtil = new SmsPushUtil(messageTables);
+        SmsPushUtil smsPushUtil = new SmsPushUtil(messageTables,userTableService);
         if(!mesCode.getState().equals("注册")){
             return  new DefaultResult(ResultCode.NOT_SUPPORT_REGISTER);
         }
@@ -120,5 +143,6 @@ public class RegisterController {
         }
 
     }
+
 
 }

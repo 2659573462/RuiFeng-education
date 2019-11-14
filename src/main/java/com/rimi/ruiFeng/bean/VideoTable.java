@@ -2,6 +2,8 @@ package com.rimi.ruiFeng.bean;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * ${Description}
  *
@@ -84,4 +86,10 @@ public class VideoTable {
      * 属于:java
      */
     private String videoCoursetitle;
+
+
+    /**
+     * 所有对应当前视频的评论
+     */
+    private List<CommentTable> selectAllCommentTable;
 }

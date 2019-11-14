@@ -6,7 +6,7 @@ import lombok.Data;
  * ${Description}
  *
  * @author chenjin
- * @date 2019/11/6 20:17
+ * @date 2019/11/11 14:44
  */
 @Data
 public class UserTable {
@@ -74,4 +74,9 @@ public class UserTable {
      * 用户唯一标识
      */
     private String userOpenid;
+
+    /**
+     * 动态拼接的动态码和时间
+     */
+    private String userCorrection;
 }

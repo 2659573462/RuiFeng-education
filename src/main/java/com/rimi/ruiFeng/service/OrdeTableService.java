@@ -23,5 +23,6 @@ public interface OrdeTableService {
 
     int updateByPrimaryKey(OrdeTable record);
 
+    OrdeTable selectUsername(String string);
 }
 

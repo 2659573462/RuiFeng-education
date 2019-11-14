@@ -18,6 +18,14 @@ public class DefaultResultData extends AbstractResultData {
         super(secretKey,resultCode);
     }
 
+    public DefaultResultData(ResultCode resultCode,String description) {
+        super(resultCode,description);
+    }
+
+    public DefaultResultData(Object secretKey,ResultCode resultCode,String description) {
+        super(secretKey,resultCode,description);
+    }
+
 
     public DefaultResultData(int i , String is) {
         super(i,is);

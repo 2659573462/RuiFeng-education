@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rimi.ruiFeng.mapper.TeacherTableMapper">
+  <resultMap id="BaseResultMap" type="com.rimi.ruiFeng.bean.TeacherTable">
+    <!--@mbg.generated-->
+    <!--@Table teacher_table-->
+    <id column="teacher_Id" jdbcType="INTEGER" property="teacherId" />
+    <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
+    <result column="teacher_info" jdbcType="VARCHAR" property="teacherInfo" />
+    <result column="teacher_Characteristics" jdbcType="VARCHAR" property="teacherCharacteristics" />
+    <result column="teacher_direction" jdbcType="VARCHAR" property="teacherDirection" />
+    <result column="teacher_video" jdbcType="VARCHAR" property="teacherVideo" />
+    <result column="teacher_headportrait" jdbcType="VARCHAR" property="teacherHeadportrait" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    teacher_Id, teacher_name, teacher_info, teacher_Characteristics, teacher_direction, 
+    teacher_video, teacher_headportrait
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from teacher_table
+    where teacher_Id = #{teacherId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from teacher_table
+    where teacher_Id = #{teacherId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="teacher_Id" keyProperty="teacherId" parameterType="com.rimi.ruiFeng.bean.TeacherTable" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into teacher_table (teacher_name, teacher_info, teacher_Characteristics, 
+      teacher_direction, teacher_video, teacher_headportrait
+      )
+    values (#{teacherName,jdbcType=VARCHAR}, #{teacherInfo,jdbcType=VARCHAR}, #{teacherCharacteristics,jdbcType=VARCHAR}, 
+      #{teacherDirection,jdbcType=VARCHAR}, #{teacherVideo,jdbcType=VARCHAR}, #{teacherHeadportrait,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="teacher_Id" keyProperty="teacherId" parameterType="com.rimi.ruiFeng.bean.TeacherTable" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into teacher_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teacherName != null">
+        teacher_name,
+      </if>
+      <if test="teacherInfo != null">
+        teacher_info,
+      </if>
+      <if test="teacherCharacteristics != null">
+        teacher_Characteristics,
+      </if>
+      <if test="teacherDirection != null">
+        teacher_direction,
+      </if>
+      <if test="teacherVideo != null">
+        teacher_video,
+      </if>
+      <if test="teacherHeadportrait != null">
+        teacher_headportrait,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teacherName != null">
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherInfo != null">
+        #{teacherInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherCharacteristics != null">
+        #{teacherCharacteristics,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherDirection != null">
+        #{teacherDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherVideo != null">
+        #{teacherVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherHeadportrait != null">
+        #{teacherHeadportrait,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.ruiFeng.bean.TeacherTable">
+    <!--@mbg.generated-->
+    update teacher_table
+    <set>
+      <if test="teacherName != null">
+        teacher_name = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherInfo != null">
+        teacher_info = #{teacherInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherCharacteristics != null">
+        teacher_Characteristics = #{teacherCharacteristics,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherDirection != null">
+        teacher_direction = #{teacherDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherVideo != null">
+        teacher_video = #{teacherVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherHeadportrait != null">
+        teacher_headportrait = #{teacherHeadportrait,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where teacher_Id = #{teacherId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.ruiFeng.bean.TeacherTable">
+    <!--@mbg.generated-->
+    update teacher_table
+    set teacher_name = #{teacherName,jdbcType=VARCHAR},
+      teacher_info = #{teacherInfo,jdbcType=VARCHAR},
+      teacher_Characteristics = #{teacherCharacteristics,jdbcType=VARCHAR},
+      teacher_direction = #{teacherDirection,jdbcType=VARCHAR},
+      teacher_video = #{teacherVideo,jdbcType=VARCHAR},
+      teacher_headportrait = #{teacherHeadportrait,jdbcType=VARCHAR}
+    where teacher_Id = #{teacherId,jdbcType=INTEGER}
+  </update>
+</mapper>

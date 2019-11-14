@@ -20,7 +20,7 @@ public class ShopTable {
     private String shopAccountnumber;
 
     /**
-    * 订单
+    * 加入的购物车的内容
     */
     private String shopcartOrderid;
 }

@@ -104,4 +104,8 @@
       Orde_status = #{ordeStatus,jdbcType=VARCHAR}
     where Orde_id = #{ordeId,jdbcType=INTEGER}
   </update>
+    <select id="selectUsername" resultMap="BaseResultMap">
+      select *
+      from orde_table where Orde_accountnumber = #{userName};
+    </select>
 </mapper>

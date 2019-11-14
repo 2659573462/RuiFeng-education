@@ -26,12 +26,13 @@ public class RegisterServiceImpl implements RegisterService {
      * @return
      */
     @Override
-    public int insertUser(RegistUserVo registUserVo) {
+    public int insertUser(Integer shopId,RegistUserVo registUserVo) {
         UserTable userTable = new UserTable();
         userTable.setUserUsername(PwdUtils.getPwd(registUserVo.getUsername()));
         //加密密码
         userTable.setUserPassword(PwdUtils.getPwd(registUserVo.getPassword()));
         userTable.setUserTellphonenumber(registUserVo.getTelephoneNumber());
+        userTable.setUserShopcart(shopId.toString());
         int i = userTableService.insertSelective(userTable);
         return i;
     }

@@ -19,6 +19,14 @@
     <result column="Video_site" jdbcType="VARCHAR" property="videoSite" />
     <result column="Video_chapterTiem" jdbcType="VARCHAR" property="videoChaptertiem" />
     <result column="Video_coursetitle" jdbcType="VARCHAR" property="videoCoursetitle" />
+
+    <collection property="selectAllCommentTable" column="video_coding" ofType="com.rimi.ruiFeng.bean.CommentTable">
+      <id column="comment_ID" jdbcType="INTEGER" property="commentId" />
+      <result column="comment_coding" jdbcType="VARCHAR" property="commentCoding" />
+      <result column="comment_user" jdbcType="VARCHAR" property="commentUser" />
+      <result column="comment_time" jdbcType="VARCHAR" property="commentTime" />
+      <result column="comment_content" jdbcType="VARCHAR" property="commentContent" />
+    </collection>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -211,4 +219,15 @@
       Video_coursetitle = #{videoCoursetitle,jdbcType=VARCHAR}
     where Video_ID = #{videoId,jdbcType=INTEGER}
   </update>
+    <select id="selectAllVideoData" resultMap="BaseResultMap">
+      select *
+      from video_table;
+    </select>
+    <select id="selectAllSuit" resultMap="BaseResultMap">
+      select *
+      from video_table where Video_suit=#{parameter};
+    </select>
+  <select id="selectAllSuitComment" resultMap="BaseResultMap">
+    select * from video_table v1 join  comment_table c1 on v1.Video_coding=c1.comment_coding where v1.Video_suit=#{parameter}
+  </select>
 </mapper>

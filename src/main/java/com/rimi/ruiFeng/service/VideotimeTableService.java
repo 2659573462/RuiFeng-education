@@ -2,6 +2,8 @@ package com.rimi.ruiFeng.service;
 
 import com.rimi.ruiFeng.bean.VideotimeTable;
 
+import java.util.List;
+
 /**
  * ${Description}
  *
@@ -23,6 +25,9 @@ public interface VideotimeTableService {
 
     int updateByPrimaryKey(VideotimeTable record);
 
+    List<VideotimeTable> selectUsername(String string);
 }
+
+
 
 

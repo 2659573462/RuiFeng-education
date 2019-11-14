@@ -36,7 +36,7 @@ public class FastDfsUtils {
         //System.out.println(fileBytes);
         try {
             //fileBytes:文件的绝对地址
-            return storageClient1.upload_file1(fileBytes, suffix, null);        } catch (IOException | MyException e) {
+            return storageClient1.upload_file1(fileBytes, suffix, null);} catch (IOException | MyException e) {
             e.printStackTrace();
         }
         return null;

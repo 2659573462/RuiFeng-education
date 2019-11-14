@@ -17,11 +17,13 @@
     <result column="User_history" jdbcType="VARCHAR" property="userHistory" />
     <result column="User_inter" jdbcType="VARCHAR" property="userInter" />
     <result column="User_openid" jdbcType="VARCHAR" property="userOpenid" />
+    <result column="User_Correction" jdbcType="VARCHAR" property="userCorrection" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     User_id, User_username, User_password, User_headportrait, User_alias, User_tellphonenumber, 
-    User_email, User_shopcart, User_byvideo, User_wish, User_history, User_inter, User_openid
+    User_email, User_shopcart, User_byvideo, User_wish, User_history, User_inter, User_openid, 
+    User_Correction
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -40,13 +42,13 @@
     insert into user_table (User_username, User_password, User_headportrait, 
       User_alias, User_tellphonenumber, User_email, 
       User_shopcart, User_byvideo, User_wish, 
-      User_history, User_inter, User_openid
-      )
+      User_history, User_inter, User_openid, 
+      User_Correction)
     values (#{userUsername,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userHeadportrait,jdbcType=VARCHAR}, 
       #{userAlias,jdbcType=VARCHAR}, #{userTellphonenumber,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, 
       #{userShopcart,jdbcType=VARCHAR}, #{userByvideo,jdbcType=VARCHAR}, #{userWish,jdbcType=VARCHAR}, 
-      #{userHistory,jdbcType=VARCHAR}, #{userInter,jdbcType=VARCHAR}, #{userOpenid,jdbcType=VARCHAR}
-      )
+      #{userHistory,jdbcType=VARCHAR}, #{userInter,jdbcType=VARCHAR}, #{userOpenid,jdbcType=VARCHAR}, 
+      #{userCorrection,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="User_id" keyProperty="userId" parameterType="com.rimi.ruiFeng.bean.UserTable" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -88,6 +90,9 @@
       <if test="userOpenid != null">
         User_openid,
       </if>
+      <if test="userCorrection != null">
+        User_Correction,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userUsername != null">
@@ -125,6 +130,9 @@
       </if>
       <if test="userOpenid != null">
         #{userOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="userCorrection != null">
+        #{userCorrection,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -168,6 +176,9 @@
       <if test="userOpenid != null">
         User_openid = #{userOpenid,jdbcType=VARCHAR},
       </if>
+      <if test="userCorrection != null">
+        User_Correction = #{userCorrection,jdbcType=VARCHAR},
+      </if>
     </set>
     where User_id = #{userId,jdbcType=INTEGER}
   </update>
@@ -185,7 +196,8 @@
       User_wish = #{userWish,jdbcType=VARCHAR},
       User_history = #{userHistory,jdbcType=VARCHAR},
       User_inter = #{userInter,jdbcType=VARCHAR},
-      User_openid = #{userOpenid,jdbcType=VARCHAR}
+      User_openid = #{userOpenid,jdbcType=VARCHAR},
+      User_Correction = #{userCorrection,jdbcType=VARCHAR}
     where User_id = #{userId,jdbcType=INTEGER}
   </update>
   <select id="selectUser" resultMap="BaseResultMap">
@@ -200,4 +212,41 @@
       select *
       from user_table where User_tellphonenumber=#{mobile};
     </select>
+  <select id="selectCorrection" resultMap="BaseResultMap">
+    select *
+    from user_table where User_Correction=#{statusode};
+  </select>
+  <update id="updateByCorrection">
+    update user_table set User_Correction=#{correction} where User_username=#{user};
+  </update>
+  <select id="selectUserAndCorrection" resultMap="BaseResultMap">
+    select *
+    from user_table where User_username=#{user} and User_Correction=#{correction};
+  </select>
+    <update id="updateHead">
+      update user_table set User_headportrait=#{fileName} where User_username=#{user};
+    </update>
+  <update id="updateAlias">
+    update user_table set User_alias=#{type} where User_username=#{userName}
+  </update>
+  <update id="updateUserPassword">
+    update user_table set User_password=#{pwd} where User_username=#{user};
+  </update>
+  <select id="selectUserAndPwd" resultMap="BaseResultMap">
+    select *
+    from user_table where User_username=#{user} and User_password=#{oldPassword};
+  </select>
+  <update id="updateEmail">
+    update user_table set User_email=#{email} where User_username=#{user};
+  </update>
+  <update id="updatePhoneVerification">
+    update user_table set User_tellphonenumber = #{mobile} where User_username = #{user};
+  </update>
+    <select id="selectOpenid" resultMap="BaseResultMap">
+      select *
+      from user_table where User_openid = #{openid};
+    </select>
+    <update id="updateByVideo">
+      update user_table set User_byvideo  = #{video} where User_username = #{user};
+    </update>
 </mapper>

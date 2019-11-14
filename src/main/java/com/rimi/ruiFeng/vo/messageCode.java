@@ -26,4 +26,8 @@ public class messageCode{
      * 声明当前验证的是什么
      */
     public String state;
+    /**
+     * 验证身份的动态参数
+     */
+    private String verification;
 }

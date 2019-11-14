@@ -1,6 +1,9 @@
 package com.rimi.ruiFeng.service;
 
+import com.rimi.ruiFeng.bean.CourseintroductionTable;
 import com.rimi.ruiFeng.bean.VideoTable;
+
+import java.util.List;
 
 /**
  * ${Description}
@@ -23,6 +26,11 @@ public interface VideoTableService {
 
     int updateByPrimaryKey(VideoTable record);
 
+    List<VideoTable> selectAllVideoData();
+
+    List selectAllSuit(String parameter);
+
+    List<VideoTable> selectAllSuitComment(String parameter);
 }
 
 

@@ -71,4 +71,18 @@
       Shopcart_Orderid = #{shopcartOrderid,jdbcType=VARCHAR}
     where Shop_id = #{shopId,jdbcType=INTEGER}
   </update>
+  <update id="updateOrderid" parameterType="com.rimi.ruiFeng.bean.ShopTable">
+    update shop_table
+    set Shopcart_Orderid=#{orderid} where Shop_accountnumber=#{id}
+  </update>
+  <select id="selectUserName" resultMap="BaseResultMap">
+    select *
+    from shop_table where Shop_accountnumber=#{userName};
+  </select>
+  <select id="selectAccountnumber" resultMap="BaseResultMap">
+    select *
+    from shop_table where Shop_accountnumber=#{use};
+  </select>
+
+
 </mapper>

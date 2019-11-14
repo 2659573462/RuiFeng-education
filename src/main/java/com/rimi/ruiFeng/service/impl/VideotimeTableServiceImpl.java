@@ -6,6 +6,8 @@ import com.rimi.ruiFeng.mapper.VideotimeTableMapper;
 import com.rimi.ruiFeng.bean.VideotimeTable;
 import com.rimi.ruiFeng.service.VideotimeTableService;
 
+import java.util.List;
+
 /**
  * ${Description}
  *
@@ -48,6 +50,14 @@ public class VideotimeTableServiceImpl implements VideotimeTableService {
         return videotimeTableMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public List<VideotimeTable> selectUsername(String string) {
+
+        return videotimeTableMapper.selectUsername(string);
+    }
+
 }
+
+
 
 

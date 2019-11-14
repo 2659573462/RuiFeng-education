@@ -5,13 +5,15 @@ import javax.annotation.Resource;
 import com.rimi.ruiFeng.bean.UserTable;
 import com.rimi.ruiFeng.mapper.UserTableMapper;
 import com.rimi.ruiFeng.service.UserTableService;
+
 /**
- *${Description}
- *@author chenjin
- *@date 2019/11/6 20:17
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/6 20:17
  */
 @Service
-public class UserTableServiceImpl implements UserTableService{
+public class UserTableServiceImpl implements UserTableService {
 
     @Resource
     private UserTableMapper userTableMapper;
@@ -48,7 +50,7 @@ public class UserTableServiceImpl implements UserTableService{
 
     @Override
     public UserTable selectUser(String username, String password) {
-        return userTableMapper.selectUser(username,password);
+        return userTableMapper.selectUser(username, password);
     }
 
     @Override
@@ -61,4 +63,41 @@ public class UserTableServiceImpl implements UserTableService{
         return userTableMapper.selectMobile(mobile);
     }
 
+    @Override
+    public UserTable selectCorrection(String statusode) {
+        return userTableMapper.selectCorrection(statusode);
+    }
+
+    @Override
+    public int updateByCorrection(String user,String correction) {
+        return userTableMapper.updateByCorrection(user,correction);
+    }
+
+    @Override
+    public UserTable selectUserAndCorrection(String s, String s1) {
+        return userTableMapper.selectUserAndCorrection(s,s1);
+    }
+
+    @Override
+    public UserTable selectUserAndPwd(String userNumber, String oldPassword) {
+        return userTableMapper.selectUserAndPwd(userNumber,oldPassword);
+    }
+
+    @Override
+    public int updatePhoneVerification(String string, String mobile) {
+        return userTableMapper.updatePhoneVerification(string,mobile);
+    }
+
+    @Override
+    public UserTable selectOpenid(String openid) {
+        return userTableMapper.selectOpenid(openid);
+    }
+
+    @Override
+    public int updateByVideo(String userUsername, String s) {
+        return userTableMapper.updateByVideo(userUsername,s);
+    }
+
+
 }
+

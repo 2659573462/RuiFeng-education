@@ -1,6 +1,7 @@
 package com.rimi.ruiFeng.mapper;
 
 import com.rimi.ruiFeng.bean.ShopTable;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *${Description}
@@ -19,4 +20,12 @@ public interface ShopTableMapper {
     int updateByPrimaryKeySelective(ShopTable record);
 
     int updateByPrimaryKey(ShopTable record);
+
+
+    int updateOrderid(@Param("id") String s,@Param("orderid") String shopcartOrderid);
+
+    ShopTable selectUserName(String userName);
+
+    ShopTable selectAccountnumber(String use);
+
 }

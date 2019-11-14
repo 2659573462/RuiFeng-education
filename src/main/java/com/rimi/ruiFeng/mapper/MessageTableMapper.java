@@ -1,12 +1,12 @@
 package com.rimi.ruiFeng.mapper;
 
-import com.rimi.ruiFeng.bean.MessageTable;
-import org.apache.ibatis.annotations.Param;
+import com.rimi.ruiFeng.bean.MessageTable;import org.apache.ibatis.annotations.Param;
 
 /**
- *${Description}
- *@author chenjin
- *@date 2019/11/7 16:22
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/11 9:21
  */
 public interface MessageTableMapper {
     int deleteByPrimaryKey(Integer messageId);
@@ -23,7 +23,7 @@ public interface MessageTableMapper {
 
     MessageTable selectMobile(String numbers);
 
-    int updateMessageMobile(@Param("numbers") String numbers,@Param("verify") String verify);
+    int updateMessageMobile(@Param("numbers") String numbers, @Param("verify") String verify,@Param("time")String time);
 
-    MessageTable selectMobileAndVerificationoCdes(@Param("telephoneNumber") String telephoneNumber,@Param("authCode") String authCode);
+    MessageTable selectMobileAndVerificationoCdes(@Param("telephoneNumber") String telephoneNumber, @Param("authCode") String authCode);
 }

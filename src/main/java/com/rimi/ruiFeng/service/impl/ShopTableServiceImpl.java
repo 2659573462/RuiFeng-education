@@ -46,4 +46,9 @@ public class ShopTableServiceImpl implements ShopTableService{
         return shopTableMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public ShopTable selectAccountnumber(String use) {
+        return shopTableMapper.selectAccountnumber(use);
+    }
+
 }

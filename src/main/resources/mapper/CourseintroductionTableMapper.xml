@@ -19,7 +19,43 @@
     <result column="CourseIntroduction_price" jdbcType="VARCHAR" property="courseintroductionPrice" />
     <result column="CourseIntroduction_discount" jdbcType="VARCHAR" property="courseintroductionDiscount" />
     <result column="CourseIntroduction_breviarypictyre" jdbcType="VARCHAR" property="courseintroductionBreviarypictyre" />
+    <result column="CourseIntroduction_breviarypictyreApp" jdbcType="VARCHAR" property="courseintroductionBreviarypictyreapp" />
     <result column="CourseIntroduction_totaltime" jdbcType="VARCHAR" property="courseintroductionTotaltime" />
+    <association property="teacherTables" javaType="com.rimi.ruiFeng.bean.TeacherTable">
+      <id column="teacher_Id" jdbcType="INTEGER" property="teacherId" />
+      <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
+      <result column="teacher_info" jdbcType="VARCHAR" property="teacherInfo" />
+      <result column="teacher_Characteristics" jdbcType="VARCHAR" property="teacherCharacteristics" />
+      <result column="teacher_direction" jdbcType="VARCHAR" property="teacherDirection" />
+      <result column="teacher_video" jdbcType="VARCHAR" property="teacherVideo" />
+      <result column="teacher_headportrait" jdbcType="VARCHAR" property="teacherHeadportrait" />
+    </association>
+    <collection property="selectAllVideoData" ofType="com.rimi.ruiFeng.bean.VideoTable">
+      <id column="Video_ID" jdbcType="INTEGER" property="videoId" />
+      <result column="Video_coding" jdbcType="VARCHAR" property="videoCoding" />
+      <result column="Video_tearch" jdbcType="VARCHAR" property="videoTearch" />
+      <result column="Video_Watchnumber" jdbcType="VARCHAR" property="videoWatchnumber" />
+      <result column="Video_suit" jdbcType="VARCHAR" property="videoSuit" />
+      <result column="Video_subject" jdbcType="VARCHAR" property="videoSubject" />
+      <result column="Video_chapter" jdbcType="VARCHAR" property="videoChapter" />
+      <result column="Video_introduce" jdbcType="VARCHAR" property="videoIntroduce" />
+      <result column="Video_pricetype" jdbcType="VARCHAR" property="videoPricetype" />
+      <result column="Video_price" jdbcType="VARCHAR" property="videoPrice" />
+      <result column="Video_discount" jdbcType="VARCHAR" property="videoDiscount" />
+      <result column="Video_breviarypicture" jdbcType="VARCHAR" property="videoBreviarypicture" />
+      <result column="Video_site" jdbcType="VARCHAR" property="videoSite" />
+      <result column="Video_chapterTiem" jdbcType="VARCHAR" property="videoChaptertiem" />
+      <result column="Video_coursetitle" jdbcType="VARCHAR" property="videoCoursetitle" />
+      <collection property="selectAllCommentTable" ofType="com.rimi.ruiFeng.bean.CommentTable">
+        <id column="comment_ID" jdbcType="INTEGER" property="commentId" />
+        <result column="comment_coding" jdbcType="VARCHAR" property="commentCoding" />
+        <result column="comment_user" jdbcType="VARCHAR" property="commentUser" />
+        <result column="comment_time" jdbcType="VARCHAR" property="commentTime" />
+        <result column="comment_content" jdbcType="VARCHAR" property="commentContent" />
+      </collection>
+    </collection>
+
+
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -27,7 +63,8 @@
     CourseIntroduction_application, CourseIntroduction_significance, CourseIntroduction_university, 
     CourseIntroduction_distinction, CourseIntroduction_grade, CourseIntroduction_Boutique, 
     CourseIntroduction_teacher, CourseIntroduction_watchnumber, CourseIntroduction_price, 
-    CourseIntroduction_discount, CourseIntroduction_breviarypictyre, CourseIntroduction_totaltime
+    CourseIntroduction_discount, CourseIntroduction_breviarypictyre, CourseIntroduction_breviarypictyreApp, 
+    CourseIntroduction_totaltime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -50,7 +87,8 @@
       CourseIntroduction_Boutique, CourseIntroduction_teacher, 
       CourseIntroduction_watchnumber, CourseIntroduction_price, 
       CourseIntroduction_discount, CourseIntroduction_breviarypictyre, 
-      CourseIntroduction_totaltime)
+      CourseIntroduction_breviarypictyreApp, CourseIntroduction_totaltime
+      )
     values (#{courseintroductionType,jdbcType=VARCHAR}, #{courseintroductionNarrate,jdbcType=VARCHAR}, 
       #{courseintroductionSummarize,jdbcType=VARCHAR}, #{courseintroductionApplication,jdbcType=VARCHAR}, 
       #{courseintroductionSignificance,jdbcType=VARCHAR}, #{courseintroductionUniversity,jdbcType=VARCHAR}, 
@@ -58,7 +96,8 @@
       #{courseintroductionBoutique,jdbcType=VARCHAR}, #{courseintroductionTeacher,jdbcType=VARCHAR}, 
       #{courseintroductionWatchnumber,jdbcType=VARCHAR}, #{courseintroductionPrice,jdbcType=VARCHAR}, 
       #{courseintroductionDiscount,jdbcType=VARCHAR}, #{courseintroductionBreviarypictyre,jdbcType=VARCHAR}, 
-      #{courseintroductionTotaltime,jdbcType=VARCHAR})
+      #{courseintroductionBreviarypictyreapp,jdbcType=VARCHAR}, #{courseintroductionTotaltime,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="CourseIntroduction_id" keyProperty="courseintroductionId" parameterType="com.rimi.ruiFeng.bean.CourseintroductionTable" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -106,6 +145,9 @@
       <if test="courseintroductionBreviarypictyre != null">
         CourseIntroduction_breviarypictyre,
       </if>
+      <if test="courseintroductionBreviarypictyreapp != null">
+        CourseIntroduction_breviarypictyreApp,
+      </if>
       <if test="courseintroductionTotaltime != null">
         CourseIntroduction_totaltime,
       </if>
@@ -152,6 +194,9 @@
       </if>
       <if test="courseintroductionBreviarypictyre != null">
         #{courseintroductionBreviarypictyre,jdbcType=VARCHAR},
+      </if>
+      <if test="courseintroductionBreviarypictyreapp != null">
+        #{courseintroductionBreviarypictyreapp,jdbcType=VARCHAR},
       </if>
       <if test="courseintroductionTotaltime != null">
         #{courseintroductionTotaltime,jdbcType=VARCHAR},
@@ -204,6 +249,9 @@
       <if test="courseintroductionBreviarypictyre != null">
         CourseIntroduction_breviarypictyre = #{courseintroductionBreviarypictyre,jdbcType=VARCHAR},
       </if>
+      <if test="courseintroductionBreviarypictyreapp != null">
+        CourseIntroduction_breviarypictyreApp = #{courseintroductionBreviarypictyreapp,jdbcType=VARCHAR},
+      </if>
       <if test="courseintroductionTotaltime != null">
         CourseIntroduction_totaltime = #{courseintroductionTotaltime,jdbcType=VARCHAR},
       </if>
@@ -227,6 +275,7 @@
       CourseIntroduction_price = #{courseintroductionPrice,jdbcType=VARCHAR},
       CourseIntroduction_discount = #{courseintroductionDiscount,jdbcType=VARCHAR},
       CourseIntroduction_breviarypictyre = #{courseintroductionBreviarypictyre,jdbcType=VARCHAR},
+      CourseIntroduction_breviarypictyreApp = #{courseintroductionBreviarypictyreapp,jdbcType=VARCHAR},
       CourseIntroduction_totaltime = #{courseintroductionTotaltime,jdbcType=VARCHAR}
     where CourseIntroduction_id = #{courseintroductionId,jdbcType=INTEGER}
   </update>
@@ -234,4 +283,30 @@
       select *
       from courseintroduction_table where CourseIntroduction_Boutique=#{type};
     </select>
+  <select id="selectAllSuit" resultMap="BaseResultMap">
+    select *
+    from courseintroduction_table;
+  </select>
+  <select id="selectLearningType" resultMap="BaseResultMap">
+    select *
+    from courseintroduction_table where CourseIntroduction_Type=#{learningType};
+  </select>
+  <select id="selectDistinction" resultMap="BaseResultMap">
+    select *
+    from courseintroduction_table where CourseIntroduction_distinction=#{distinction};
+  </select>
+  <select id="selectASingle" resultType="java.util.List">
+    select * from courseintroduction_table c1 join video_table v1 join comment_table c2 on c1.CourseIntroduction_distinction = v1.Video_suit and v1.Video_coding = c2.comment_coding where c1.CourseIntroduction_distinction=#{distinction}   ;
+  </select>
+  <select id="selectCRCcomment" resultMap="BaseResultMap">
+    select *
+    from courseintroduction_table c1 join teacher_table t1 on c1.CourseIntroduction_teacher = t1.teacher_name where c1.CourseIntroduction_distinction=#{distinction};
+  </select>
+  <select id="selectAllVideoData" resultMap="BaseResultMap">
+    select *
+    from courseintroduction_table c1 join teacher_table t1 on c1.CourseIntroduction_teacher = t1.teacher_name  ;
+  </select>
+  <select id="selectASingleNo" resultType="java.util.List">
+    select * from courseintroduction_table c1 join video_table v1 join comment_table c2 on c1.CourseIntroduction_distinction = v1.Video_suit and v1.Video_coding = c2.comment_coding ;
+  </select>
 </mapper>

@@ -11,6 +11,6 @@ import com.rimi.ruiFeng.vo.RegistUserVo;
  */
 public interface RegisterService {
 
-    int insertUser(RegistUserVo registUserVo);
+    int insertUser(Integer shopId,RegistUserVo registUserVo);
 
 }

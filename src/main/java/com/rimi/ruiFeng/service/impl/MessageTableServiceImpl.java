@@ -5,13 +5,15 @@ import javax.annotation.Resource;
 import com.rimi.ruiFeng.bean.MessageTable;
 import com.rimi.ruiFeng.mapper.MessageTableMapper;
 import com.rimi.ruiFeng.service.MessageTableService;
+
 /**
- *${Description}
- *@author chenjin
- *@date 2019/11/7 16:22
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/7 16:22
  */
 @Service
-public class MessageTableServiceImpl implements MessageTableService{
+public class MessageTableServiceImpl implements MessageTableService {
 
     @Resource
     private MessageTableMapper messageTableMapper;
@@ -52,13 +54,14 @@ public class MessageTableServiceImpl implements MessageTableService{
     }
 
     @Override
-    public int updateMobile(String numbers, String verify) {
-        return messageTableMapper.updateMessageMobile(numbers,verify);
+    public int updateMobile(String numbers, String verify,String time) {
+        return messageTableMapper.updateMessageMobile(numbers, verify,time);
     }
 
     @Override
     public MessageTable selectMobileAndVerificationoCde(String telephoneNumber, String authCode) {
-        return messageTableMapper.selectMobileAndVerificationoCdes(telephoneNumber,authCode);
+        return messageTableMapper.selectMobileAndVerificationoCdes(telephoneNumber, authCode);
     }
 
 }
+

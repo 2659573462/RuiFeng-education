@@ -28,6 +28,8 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public UserTable selectUser(User user) {
+        System.out.println(PwdUtils.getPwd(user.getUsername()));
+        System.out.println(PwdUtils.getPwd(user.getPassword()));
         UserTable u = userTableService.selectUser(PwdUtils.getPwd(user.getUsername()),PwdUtils.getPwd(user.getPassword()));
         return u;
     }

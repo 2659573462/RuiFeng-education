@@ -51,9 +51,4 @@ public class AcquireOrderForm {
         return new SimpleHash(HASH_ALGORITHM_NAME, password, salt, count).toHex();
     }
 
-    public static void main(String[] args) {
-        String orderForm =new AcquireOrderForm().getOrderForm();
-        System.out.println(orderForm);
-        System.out.println(orderForm.length());
-    }
 }

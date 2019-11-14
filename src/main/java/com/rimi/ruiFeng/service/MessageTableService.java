@@ -1,12 +1,14 @@
 package com.rimi.ruiFeng.service;
 
 import com.rimi.ruiFeng.bean.MessageTable;
-    /**
- *${Description}
- *@author chenjin
- *@date 2019/11/7 16:22
+
+/**
+ * ${Description}
+ *
+ * @author chenjin
+ * @date 2019/11/7 16:22
  */
-public interface MessageTableService{
+public interface MessageTableService {
 
 
     int deleteByPrimaryKey(Integer messageId);
@@ -23,8 +25,9 @@ public interface MessageTableService{
 
     MessageTable selectMobile(String numbers);
 
-    int updateMobile(String numbers,String verify);
+    int updateMobile(String numbers, String verify,String time);
 
 
     MessageTable selectMobileAndVerificationoCde(String telephoneNumber, String authCode);
-    }
+}
+

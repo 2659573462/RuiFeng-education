@@ -21,4 +21,5 @@ public interface ShopTableService{
 
     int updateByPrimaryKey(ShopTable record);
 
-}
+        ShopTable selectAccountnumber(String use);
+    }

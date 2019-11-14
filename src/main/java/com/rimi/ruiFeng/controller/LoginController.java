@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,17 +45,26 @@ public class LoginController {
      * @return
      */
     @PostMapping("/login")
-    private ResultData loginController(@RequestBody User user) {
+    private ResultData loginController(@RequestBody  User user) {
         //@ModelAttribute
         /*@ApiIgnore  @RequestBody*/
         System.out.println(user);
             if(user.getUsername()!=null && user.getPassword()!=null){
-                //生成令牌
-                String uses = PwdUtils.getPwd(AcquireOrderForm.getOrderForm());
-                List list = new ArrayList();
                 UserTable userTable = loginService.selectUser(user);
                 if(userTable!=null){
-                    list.add(uses);
+
+                    //生成令牌
+                    String correction=null;
+                    String pwd = PwdUtils.getPwd(user.getUsername());
+                    System.out.println("pwd"+pwd);
+                    correction =pwd+","+ PwdUtils.getPwd(AcquireOrderForm.getOrderForm());
+                    System.out.println("pwd"+correction);
+                    //截取时间
+                    //String.valueOf(System.currentTimeMillis())
+                    List list = new ArrayList();
+                    list.add(correction);
+                    //将生成的令牌状态吗传入数据库
+                    int i1=userTableService.updateByCorrection(PwdUtils.getPwd(user.getUsername()),correction);
                     //传给前端
                     return new DefaultResultData(list);
                 }else{
@@ -82,7 +92,7 @@ public class LoginController {
                 return new DefaultResult(ResultCode.INEXISTENCE);
             }else{
                 //创建一个发送验证码的工具
-                SmsPushUtil smsPushUtil = new SmsPushUtil(messageTables);
+                SmsPushUtil smsPushUtil = new SmsPushUtil(messageTables,userTableService);
                 //设置对象参数传入工具中
                 MessageTable messageTable1 = new MessageTable();
                 //手机号传入
@@ -93,10 +103,8 @@ public class LoginController {
                 Integer code = messageCode.getCode();
                 System.out.println(code);
                 if(code==205){
-                    System.out.println("成功");
                     return  new DefaultResult(ResultCode.SUCCESSC);
                 }else{
-                    System.out.println("失败");
                     return  new DefaultResult(ResultCode.SUCCESSCDEFEATED);
                 }
             }
@@ -127,9 +135,16 @@ public class LoginController {
                     if(userTable==null){
                         return new DefaultResult(ResultCode.INEXISTENCE);
                     }else{
-                        int i = messageTables.updateMobile(mesCode.getMobile(), "");
-                        System.out.println("修改是"+i);
-                        return new DefaultResult(ResultCode.LOGIN_SUCCEED);
+                        Long s = Long.valueOf("3000000");
+                        Date date = new Date(Long.parseLong(String.valueOf(messageTables.selectMobile(mesCode.getMobile())))-s);
+                        Date d2 = new Date(System.currentTimeMillis());
+                        if((date.compareTo(d2))<0){
+                            int i = messageTables.updateMobile(mesCode.getMobile(), "","");
+                            return new DefaultResult(ResultCode.LOGIN_SUCCEED);
+                        }else{
+                            return new DefaultResult(ResultCode.ERROR_VERIFICATION_PAST_DUE);
+                        }
+
                     }
                 }
             }

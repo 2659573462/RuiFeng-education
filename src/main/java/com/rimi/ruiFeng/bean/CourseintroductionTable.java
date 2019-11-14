@@ -2,11 +2,13 @@ package com.rimi.ruiFeng.bean;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * ${Description}
  *
  * @author chenjin
- * @date 2019/11/10 18:16
+ * @date 2019/11/11 19:23
  */
 @Data
 public class CourseintroductionTable {
@@ -86,7 +88,22 @@ public class CourseintroductionTable {
     private String courseintroductionBreviarypictyre;
 
     /**
+     * 视频套装对应虚拟机缩略图的地址App 移动
+     */
+    private String courseintroductionBreviarypictyreapp;
+
+    /**
      * 视频套装的总时长
      */
     private String courseintroductionTotaltime;
+
+    /**
+     * 一套视频含的多个子视频
+     */
+    private List<VideoTable> selectAllVideoData;
+
+    /**
+     * 讲师对象
+     */
+    private TeacherTable teacherTables;
 }

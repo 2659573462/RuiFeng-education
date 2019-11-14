@@ -1,10 +1,13 @@
 package com.rimi.ruiFeng.service.impl;
 
+import com.rimi.ruiFeng.bean.CourseintroductionTable;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.rimi.ruiFeng.bean.VideoTable;
 import com.rimi.ruiFeng.mapper.VideoTableMapper;
 import com.rimi.ruiFeng.service.VideoTableService;
+
+import java.util.List;
 
 /**
  * ${Description}
@@ -46,6 +49,21 @@ public class VideoTableServiceImpl implements VideoTableService {
     @Override
     public int updateByPrimaryKey(VideoTable record) {
         return videoTableMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<VideoTable> selectAllVideoData() {
+        return videoTableMapper.selectAllVideoData();
+    }
+
+    @Override
+    public List selectAllSuit(String parameter) {
+        return videoTableMapper.selectAllSuit(parameter);
+    }
+
+    @Override
+    public List<VideoTable> selectAllSuitComment(String parameter) {
+        return videoTableMapper.selectAllSuitComment(parameter);
     }
 
 }

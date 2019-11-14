@@ -48,5 +48,10 @@ public class OrdeTableServiceImpl implements OrdeTableService {
         return ordeTableMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public OrdeTable selectUsername(String string) {
+        return ordeTableMapper.selectUsername(string);
+    }
+
 }
 

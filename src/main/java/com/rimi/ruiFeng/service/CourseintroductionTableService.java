@@ -2,6 +2,8 @@ package com.rimi.ruiFeng.service;
 
 import com.rimi.ruiFeng.bean.CourseintroductionTable;
 
+import java.util.List;
+
 /**
  * ${Description}
  *
@@ -23,7 +25,22 @@ public interface CourseintroductionTableService {
 
     int updateByPrimaryKey(CourseintroductionTable record);
 
-    CourseintroductionTable selectType(String type);
+    List<CourseintroductionTable> selectType(String type);
+
+    List<CourseintroductionTable> selectAllSuit();
+
+    List selectASingle(String distinction);
+
+    List selectASingleNo();
+
+    List<CourseintroductionTable> selectLearningType(String content);
+
+    CourseintroductionTable selectDistinction(String distinction);
+
+    CourseintroductionTable selectCRCcomment(String distinction);
+
+    List<CourseintroductionTable> selectCRCcomment();
 }
+
 
 
