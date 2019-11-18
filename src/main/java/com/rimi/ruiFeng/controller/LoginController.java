@@ -29,6 +29,8 @@ import java.util.List;
 @RestController
 public class LoginController {
 
+
+
     private final LoginService loginService;
     private final MessageTableService messageTables;
     private final UserTableServiceImpl userTableService;
@@ -153,9 +155,27 @@ public class LoginController {
         }
     }
 
-
-
-
-
-
+    /**
+     *                    _ooOoo_
+     *                   o8888888o
+     *                   88" . "88
+     *                   (| -_- |)
+     *                    O\ = /O
+     *                ____/`---'\____
+     *              .   ' \\| |// `.
+     *               / \\||| : |||// \
+     *             / _||||| -:- |||||- \
+     *               | | \\\ - /// | |
+     *             | \_| ''\---/'' | |
+     *              \ .-\__ `-` ___/-. /
+     *           ___`. .' /--.--\ `. . __
+     *        ."" '< `.___\_<|>_/___.' >'"".
+     *       | | : `- \`.;`\ _ /`;.`/ - ` : | |
+     *         \ \ `-. \_ __\ /__ _/ .-` / /
+     * ======`-.____`-.___\_____/___.-`____.-'======
+     *                    `=---='
+     *
+     * .............................................
+     *          佛祖保佑             永无BUG
+     */
 }
