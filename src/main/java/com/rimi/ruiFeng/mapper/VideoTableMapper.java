@@ -30,4 +30,6 @@ public interface VideoTableMapper {
     List<VideoTable> selectAllSuit(String parameter);
 
     List<VideoTable> selectAllSuitComment(@Param("parameter") String parameter);
+
+    VideoTable selectACommentTable(String content);
 }

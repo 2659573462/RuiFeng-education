@@ -9,7 +9,7 @@ import lombok.Data;
  * @date 2019/11/12 16:38
  */
 @Data
-public class SoppingVo {
+public class  SoppingVo {
     /**
      * 验证身份的动态参数
      */

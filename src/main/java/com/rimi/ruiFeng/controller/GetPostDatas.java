@@ -116,6 +116,25 @@ public class GetPostDatas {
         return new DefaultResultData(list);
     }
 
+
+    /**
+     * 获取单个视频评论
+     *
+     */
+    @PostMapping("/getComment")
+    private ResultData getComment(@RequestBody  RequestASingleVo requestASingleVo){
+        if(requestASingleVo.getContent()!=null ||requestASingleVo.getStatusode()!=null){
+            return new DefaultResultData(ResultCode.ERROR_PARAMETER);
+        }
+        VideoTable video = videoTableService.selectCRCcomment(requestASingleVo.getContent());
+        if(video==null){
+            return new DefaultResultData(ResultCode.DESCRIPTION,"当前没有评论");
+        }else{
+            return new DefaultResultData(video);
+        }
+    }
+
+
     /**
      * 获取同一个方向的所有套
      * @param requestASingleVo

@@ -31,6 +31,9 @@ public interface VideoTableService {
     List selectAllSuit(String parameter);
 
     List<VideoTable> selectAllSuitComment(String parameter);
+
+
+    VideoTable selectCRCcomment(String content);
 }
 
 

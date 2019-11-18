@@ -46,7 +46,9 @@ public class InsertShoppingServiceImpl implements InsertShoppingService {
         if(verifcation){
             //用户打算加入购物车的商品
             String commoditys = soppingVo.getCommoditys();
-
+            //UrO5VIDsYf0P7S70k9zPP7ZkHf3sXxM+fZqIaxjEWPg=, XN6zUlSsYacA1crhS2D/Km6/Px9cMkoAqdPu + VPX00s=
+            //UrO5VIDsYf0P7S70k9zPP7ZkHf3sXxM+fZqIaxjEWPg=, XN6zUlSsYacA1crhS2D/Km6/Px9cMkoAqdPu + VPX00s=
+            //UrO5VIDsYf0P7S70k9zPP7ZkHf3sXxM+fZqIaxjEWPg=,emC++5fhKzco+mQTGqOa7Bi+X/UNO5iCP5GCj1rB3ts=
             CourseintroductionTable courseintroductionTable = courseintroductionTableMapper.selectDistinction(commoditys);
             if(courseintroductionTable==null){
                 return -10;
@@ -95,7 +97,7 @@ public class InsertShoppingServiceImpl implements InsertShoppingService {
     }
 
     /**
-     * 查询用户的购买
+     * 查询用户的购物车
      * @param userName
      * @return
      */
@@ -138,25 +140,7 @@ public class InsertShoppingServiceImpl implements InsertShoppingService {
                 }
             }
         }
-        //List<String> strings2 = Arrays.asList(strings1);
-        //List<String> strings5 = Arrays.asList(strings);
-        ////删除用户添加的
-        //Iterator<String> iterator = strings2.iterator();
-        //Iterator<String> iterator1 = strings5.iterator();
-        //while(iterator1.hasNext()){
-        //    String s1=iterator1.next();
-        //    while (iterator.hasNext()){
-        //        String s=iterator.next();
-        //        System.out.println("s是"+s);
-        //        System.out.println("s1是"+s1);
-        //        if(s.equals(s1)){
-        //            iterator.remove();
-        //        }
-        //    }
-        //}
-        //for (int i = 0; i < strings2.size() ; i++) {
-        //    System.out.println(strings2.get(i));
-        //}
+
         //生成新的字符串
         String stringOrderid="";
         for (int i = 0; i <strings1.length ; i++) {

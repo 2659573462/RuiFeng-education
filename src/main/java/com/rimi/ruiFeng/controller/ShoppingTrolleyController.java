@@ -61,6 +61,9 @@ public class ShoppingTrolleyController {
         }
         if(i==-5||i==0){
             //说明用户已经购买
+            if(i==0){
+                return new DefaultResult(ResultCode.FAIL);
+            }
             return new DefaultResult(ResultCode.HAVE_ALREADY_PURCHASED);
         }else{
             return new DefaultResult(ResultCode.SUCCESS);

@@ -66,6 +66,11 @@ public class VideoTableServiceImpl implements VideoTableService {
         return videoTableMapper.selectAllSuitComment(parameter);
     }
 
+    @Override
+    public VideoTable selectCRCcomment(String content) {
+        return videoTableMapper.selectACommentTable(content);
+    }
+
 }
 
 

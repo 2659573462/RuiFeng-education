@@ -230,4 +230,7 @@
   <select id="selectAllSuitComment" resultMap="BaseResultMap">
     select * from video_table v1 join  comment_table c1 on v1.Video_coding=c1.comment_coding where v1.Video_suit=#{parameter}
   </select>
+    <select id="selectACommentTable" resultMap="BaseResultMap">
+      select * from video_table v1 join  comment_table c1 on v1.Video_coding=c1.comment_coding where v1.Video_coding=#{content}
+    </select>
 </mapper>

@@ -74,6 +74,7 @@ public class RegisterController {
                             ShopTable shopTable = new ShopTable();
                             shopTable.setShopAccountnumber(use);
                             int insert = shopTableService.insert(shopTable);
+
                             //查询购物车
                             ShopTable shop=shopTableService.selectAccountnumber(use);
                             Integer shopId = shop.getShopId();
