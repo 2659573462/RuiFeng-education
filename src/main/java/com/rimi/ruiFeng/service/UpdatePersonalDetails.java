@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2019/11/13 11:01
  */
 @Service
-public interface updatePersonalDetails {
+public interface UpdatePersonalDetails {
     /**
      * 修改头像
      */

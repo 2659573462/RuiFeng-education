@@ -4,6 +4,7 @@ import com.rimi.ruiFeng.bean.UserTable;
 import com.rimi.ruiFeng.common.DefaultResultData;
 import com.rimi.ruiFeng.common.ResultCode;
 import com.rimi.ruiFeng.common.ResultData;
+import com.rimi.ruiFeng.service.UserTableService;
 import com.rimi.ruiFeng.service.impl.UserTableServiceImpl;
 import com.rimi.ruiFeng.util.AcquireOrderForm;
 import com.rimi.ruiFeng.util.PwdUtils;
@@ -30,7 +31,7 @@ import java.util.List;
 public class miniProgramControler {
 
     @Autowired
-    private UserTableServiceImpl userTableService;
+    private UserTableService userTableService;
 
 
     @PostMapping("/minLogin")

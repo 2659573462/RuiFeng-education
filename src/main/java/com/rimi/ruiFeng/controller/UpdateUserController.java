@@ -2,12 +2,11 @@ package com.rimi.ruiFeng.controller;
 
 import com.rimi.ruiFeng.bean.UserTable;
 import com.rimi.ruiFeng.common.DefaultResultData;
-import com.rimi.ruiFeng.common.Result;
 import com.rimi.ruiFeng.common.ResultCode;
 import com.rimi.ruiFeng.common.ResultData;
-import com.rimi.ruiFeng.mapper.UserTableMapper;
-import com.rimi.ruiFeng.service.impl.UpdatePersonalDetailsImpl;
+import com.rimi.ruiFeng.service.UserTableService;
 import com.rimi.ruiFeng.service.impl.UserTableServiceImpl;
+import com.rimi.ruiFeng.service.UpdatePersonalDetails;
 import com.rimi.ruiFeng.util.PwdUtils;
 import com.rimi.ruiFeng.util.UtilString;
 import com.rimi.ruiFeng.vo.LoginDataVo;
@@ -35,10 +34,10 @@ import javax.servlet.http.HttpServletRequest;
 @Transactional(rollbackFor = Exception.class)
 public class UpdateUserController {
     @Autowired
-    private UpdatePersonalDetailsImpl updatePersonalDetailsImpl;
+    private UpdatePersonalDetails updatePersonalDetails;
 
     @Autowired
-    private UserTableServiceImpl userTableService;
+    private UserTableService userTableService;
 
     /**
      * 修改头像
@@ -48,7 +47,7 @@ public class UpdateUserController {
      */
     @PostMapping("/updateUserHead")
     private ResultData updateHead(UpdateUserHeadVo updateHead, HttpServletRequest request){
-        ResultData resultData = updatePersonalDetailsImpl.updateUserPassword(updateHead, request);
+        ResultData resultData = updatePersonalDetails.updateUserPassword(updateHead, request);
         return resultData;
         //http://10.2.5.16:8888/group1/M00/00/00/CgIFEF3ADr6APu1kABgOvcx4ouM060.png
     }
@@ -58,7 +57,7 @@ public class UpdateUserController {
      */
     @PostMapping("/updateAlias")
     private ResultData updateAlias(@RequestBody LoginDataVo tpe){
-        int i=updatePersonalDetailsImpl.updateAlias(tpe.getVerification(),tpe.getCourseintroductionType());
+        int i= updatePersonalDetails.updateAlias(tpe.getVerification(),tpe.getCourseintroductionType());
         if(i>0){
             return new DefaultResultData(ResultCode.SUCCESS);
         }else{
@@ -90,7 +89,7 @@ public class UpdateUserController {
         }
 
         //修改秘密 :搜寻用户  修改密码
-        int i=updatePersonalDetailsImpl.updateUserPassword(strings[0],PwdUtils.getPwd(pwds.getNewPassword()));
+        int i= updatePersonalDetails.updateUserPassword(strings[0],PwdUtils.getPwd(pwds.getNewPassword()));
         System.out.println(strings[0]+"账号");
         System.out.println(PwdUtils.getPwd(pwds.getNewPassword())+"新密码");
         if(i>0){
@@ -109,7 +108,7 @@ public class UpdateUserController {
      */
     @PostMapping("/updateEmail")
     private ResultData updateEmail(@RequestBody LoginDataVo updateEmail){
-        int i = updatePersonalDetailsImpl.updateUserEmail(updateEmail);
+        int i = updatePersonalDetails.updateUserEmail(updateEmail);
         if(i>0 && i!=-5){
             return new DefaultResultData(ResultCode.SUCCESS);
         }else{

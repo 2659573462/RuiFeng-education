@@ -4,10 +4,11 @@ import com.rimi.ruiFeng.bean.CourseintroductionTable;
 import com.rimi.ruiFeng.bean.UserTable;
 import com.rimi.ruiFeng.bean.VideotimeTable;
 import com.rimi.ruiFeng.common.DefaultResultData;
-import com.rimi.ruiFeng.common.Result;
 import com.rimi.ruiFeng.common.ResultCode;
 import com.rimi.ruiFeng.common.ResultData;
+import com.rimi.ruiFeng.service.CourseintroductionTableService;
 import com.rimi.ruiFeng.service.LoginGetDataService;
+import com.rimi.ruiFeng.service.VideotimeTableService;
 import com.rimi.ruiFeng.service.impl.CourseintroductionTableServiceImpl;
 import com.rimi.ruiFeng.service.impl.VideotimeTableServiceImpl;
 import com.rimi.ruiFeng.util.UtilString;
@@ -33,15 +34,15 @@ import java.util.List;
 public class LoginGetDataController {
 
     private LoginGetDataService loginGetData;
-    private  CourseintroductionTableServiceImpl courseintroductionTableServiceImpl;
-    private VideotimeTableServiceImpl VideotimeTableServiceImpl;
+    private CourseintroductionTableService courseintroductionTableService;
+    private VideotimeTableService VideotimeTableService;
 
     private LoginGetDataController(LoginGetDataService loginGetData,
                                    CourseintroductionTableServiceImpl courseintroductionTableServiceImpl,
                                    VideotimeTableServiceImpl VideotimeTableServiceImpl){
         this.loginGetData= loginGetData;
-        this.courseintroductionTableServiceImpl= courseintroductionTableServiceImpl;
-        this.VideotimeTableServiceImpl=VideotimeTableServiceImpl;
+        this.courseintroductionTableService = courseintroductionTableServiceImpl;
+        this.VideotimeTableService =VideotimeTableServiceImpl;
     }
 
     /**
@@ -91,7 +92,7 @@ public class LoginGetDataController {
             String[] strings = UtilString.InterceptString(userByvideo);
             List userBought=new ArrayList();
             for (int i = 0; i <strings.length ; i++) {
-                CourseintroductionTable courseintroductionTable = courseintroductionTableServiceImpl.selectDistinction(strings[i]);
+                CourseintroductionTable courseintroductionTable = courseintroductionTableService.selectDistinction(strings[i]);
                 if(courseintroductionTable!=null){
                     userBought.add(courseintroductionTable);
                 }
@@ -110,7 +111,7 @@ public class LoginGetDataController {
         }else {
             String verification = loginDataVo.getVerification();
             String[] strings = UtilString.InterceptString(verification);
-            List<VideotimeTable> fs = VideotimeTableServiceImpl.selectUsername(strings[0]);
+            List<VideotimeTable> fs = VideotimeTableService.selectUsername(strings[0]);
             return new DefaultResultData(fs);
         }
     }

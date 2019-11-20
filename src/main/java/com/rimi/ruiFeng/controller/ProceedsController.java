@@ -8,19 +8,17 @@ import com.alipay.api.response.AlipayTradePagePayResponse;
 import com.rimi.ruiFeng.bean.CourseintroductionTable;
 import com.rimi.ruiFeng.bean.ShopTable;
 import com.rimi.ruiFeng.bean.UserTable;
+import com.rimi.ruiFeng.service.CourseintroductionTableService;
+import com.rimi.ruiFeng.service.ShopTableService;
+import com.rimi.ruiFeng.service.UserTableService;
 import com.rimi.ruiFeng.service.VideoTableService;
-import com.rimi.ruiFeng.service.impl.CourseintroductionTableServiceImpl;
-import com.rimi.ruiFeng.service.impl.ShopTableServiceImpl;
-import com.rimi.ruiFeng.service.impl.UserTableServiceImpl;
 import com.rimi.ruiFeng.util.AcquireOrderForm;
 import com.rimi.ruiFeng.util.UtilString;
 import com.rimi.ruiFeng.vo.SoppingVo;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,13 +40,13 @@ public class ProceedsController {
     public VideoTableService videoTableMapper;
 
     @Autowired
-    public CourseintroductionTableServiceImpl courseintroductionTableServiceImpl;
+    public CourseintroductionTableService courseintroductionTableService;
 
     @Autowired
-    public UserTableServiceImpl UserTableServiceImpl;
+    public UserTableService UserTableService;
 
     @Autowired
-    public ShopTableServiceImpl  shopTableServiceImpl;
+    public ShopTableService shopTableService;
 
     private String ds ;
     private int df ;
@@ -111,11 +109,11 @@ public class ProceedsController {
                 String verification = videoId.getVerification();
                 String[] strings = UtilString.InterceptString(verification);
                 //搜索用户
-                UserTable userTable = UserTableServiceImpl.selectUsername(strings[0]);
+                UserTable userTable = UserTableService.selectUsername(strings[0]);
                 //获取他购物车的id
                 String userShopcartId = userTable.getUserShopcart();
                 //通过id查找购物车
-                ShopTable shopTable = shopTableServiceImpl.selectByPrimaryKey(Integer.valueOf(userShopcartId));
+                ShopTable shopTable = shopTableService.selectByPrimaryKey(Integer.valueOf(userShopcartId));
 
                 //删除购物车内已经添加的商品
                 String shopcartOrderid = shopTable.getShopcartOrderid();
@@ -124,7 +122,7 @@ public class ProceedsController {
                 String f = "";
                 int d = 0;
                 for (int i = 0; i <strings1.length; i++) {
-                    CourseintroductionTable courseintroductionTable = courseintroductionTableServiceImpl.selectDistinction(strings1[i]);
+                    CourseintroductionTable courseintroductionTable = courseintroductionTableService.selectDistinction(strings1[i]);
                     f=f+","+courseintroductionTable.getCourseintroductionNarrate();
                     d=d+Integer.parseInt(courseintroductionTable.getCourseintroductionPrice());
                 }
@@ -148,7 +146,7 @@ public class ProceedsController {
                 }
                 ds = s;
                 //修改用户已经拥有
-                int i = UserTableServiceImpl.updateByVideo(userTable.getUserUsername(), s);
+                int i = UserTableService.updateByVideo(userTable.getUserUsername(), s);
             } else {
                 System.out.println("调用失败");
             }

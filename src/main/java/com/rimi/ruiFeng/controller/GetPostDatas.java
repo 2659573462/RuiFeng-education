@@ -6,13 +6,8 @@ import com.rimi.ruiFeng.bean.VideoTable;
 import com.rimi.ruiFeng.common.DefaultResultData;
 import com.rimi.ruiFeng.common.ResultCode;
 import com.rimi.ruiFeng.common.ResultData;
-import com.rimi.ruiFeng.service.LoginGetDataService;
-import com.rimi.ruiFeng.service.LoginService;
-import com.rimi.ruiFeng.service.MessageTableService;
-import com.rimi.ruiFeng.service.VideoTableService;
-import com.rimi.ruiFeng.service.impl.CourseintroductionTableServiceImpl;
+import com.rimi.ruiFeng.service.*;
 import com.rimi.ruiFeng.service.impl.LoginGetDataServiceImpl;
-import com.rimi.ruiFeng.service.impl.UserTableServiceImpl;
 import com.rimi.ruiFeng.util.UtilString;
 import com.rimi.ruiFeng.vo.RequestASingleVo;
 import io.swagger.annotations.Api;
@@ -37,21 +32,21 @@ public class GetPostDatas {
 
     private final LoginService loginService;
     private final MessageTableService messageTables;
-    private final UserTableServiceImpl userTableService;
+    private final UserTableService userTableService;
     private final VideoTableService videoTableService;
-    private final CourseintroductionTableServiceImpl courseintroductionTableServiceImpl;
+    private final CourseintroductionTableService courseintroductionTableService;
 
     @Autowired
     private  LoginGetDataServiceImpl loginGetDataService;
 
     public GetPostDatas(LoginService loginService, MessageTableService messageTables,
-                        UserTableServiceImpl userTableService, VideoTableService videoTableService,
-                        CourseintroductionTableServiceImpl courseintroductionTableServiceImpl) {
+                        UserTableService userTableService, VideoTableService videoTableService,
+                        CourseintroductionTableService courseintroductionTableService) {
         this.loginService = loginService;
         this.userTableService =userTableService ;
         this.messageTables=messageTables;
         this.videoTableService = videoTableService;
-        this.courseintroductionTableServiceImpl=courseintroductionTableServiceImpl;
+        this.courseintroductionTableService=courseintroductionTableService;
     }
 
     /**
@@ -70,7 +65,7 @@ public class GetPostDatas {
      */
     @PostMapping("/getAllSuit")
     private ResultData getAllSuit(){
-        List<CourseintroductionTable> type = courseintroductionTableServiceImpl.selectCRCcomment();
+        List<CourseintroductionTable> type = courseintroductionTableService.selectCRCcomment();
         System.out.println(type);
         return new DefaultResultData(type);
     }
@@ -144,7 +139,7 @@ public class GetPostDatas {
     private ResultData getLearningType(@RequestBody  RequestASingleVo requestASingleVo){
         String parameter = requestASingleVo.getContent();
         System.out.println(parameter);
-        List<CourseintroductionTable> type = courseintroductionTableServiceImpl.selectLearningType(requestASingleVo.getContent());
+        List<CourseintroductionTable> type = courseintroductionTableService.selectLearningType(requestASingleVo.getContent());
         return new DefaultResultData(type);
     }
 

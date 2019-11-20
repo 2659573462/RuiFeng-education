@@ -4,10 +4,10 @@ import com.rimi.ruiFeng.bean.CourseintroductionTable;
 import com.rimi.ruiFeng.bean.ShopTable;
 import com.rimi.ruiFeng.bean.UserTable;
 import com.rimi.ruiFeng.common.*;
-import com.rimi.ruiFeng.service.impl.CourseintroductionTableServiceImpl;
-import com.rimi.ruiFeng.service.impl.InsertShoppingServiceImpl;
-import com.rimi.ruiFeng.service.impl.OrdeTableServiceImpl;
-import com.rimi.ruiFeng.service.impl.UserTableServiceImpl;
+import com.rimi.ruiFeng.service.CourseintroductionTableService;
+import com.rimi.ruiFeng.service.InsertShoppingService;
+import com.rimi.ruiFeng.service.OrdeTableService;
+import com.rimi.ruiFeng.service.UserTableService;
 import com.rimi.ruiFeng.util.UtilString;
 import com.rimi.ruiFeng.vo.SoppingVo;
 import io.swagger.annotations.Api;
@@ -32,17 +32,17 @@ import java.util.List;
 public class ShoppingTrolleyController {
 
     @Autowired
-    private UserTableServiceImpl userTableService;
+    private UserTableService userTableService;
 
     @Autowired
-    private CourseintroductionTableServiceImpl courseintroductionTableServiceImpl;
+    private CourseintroductionTableService courseintroductionTableService;
 
     @Autowired
-    private InsertShoppingServiceImpl insertShoppingServiceImpl;
+    private InsertShoppingService insertShoppingService;
 
 
     @Autowired
-    private OrdeTableServiceImpl OrdeTableServiceImpl;
+    private OrdeTableService OrdeTableService;
 
 
     /**
@@ -54,7 +54,7 @@ public class ShoppingTrolleyController {
     private Result insertSoppings(@RequestBody  SoppingVo soppingVo){
         System.out.println(soppingVo);
 
-        int i = insertShoppingServiceImpl.insertSoppings(soppingVo);
+        int i = insertShoppingService.insertSoppings(soppingVo);
         System.out.println(i);
         if(i==-10){
             return new DefaultResult(ResultCode.PRODUCT_DOES_NOT_EXIST);
@@ -78,14 +78,14 @@ public class ShoppingTrolleyController {
     private ResultData getUserSopping(@RequestBody  SoppingVo soppingVo){
         System.out.println(soppingVo);
         System.out.println(soppingVo.getVerification());
-        ShopTable shopTable = insertShoppingServiceImpl.selectUsername(soppingVo.getVerification());
+        ShopTable shopTable = insertShoppingService.selectUsername(soppingVo.getVerification());
         List<CourseintroductionTable> count=new ArrayList<>();
         if(shopTable.getShopcartOrderid()==null){
             return new DefaultResultData(ResultCode.NOT_NOSOPPING);
         }else{
             String[] strings = UtilString.InterceptString(shopTable.getShopcartOrderid());
             for (int i = 0; i <strings.length ; i++) {
-                CourseintroductionTable courseintroductionTable = courseintroductionTableServiceImpl.selectDistinction(strings[i]);
+                CourseintroductionTable courseintroductionTable = courseintroductionTableService.selectDistinction(strings[i]);
                 if(courseintroductionTable!=null){
                     count.add(courseintroductionTable);
                 }
@@ -102,7 +102,7 @@ public class ShoppingTrolleyController {
     private ResultData deleteByOrderid(@RequestBody  SoppingVo soppingVo){
         System.out.println(soppingVo);
         System.out.println("前端发送修改购物车的参数"+soppingVo.getCommoditys());
-        int i =  insertShoppingServiceImpl.deleteByOrderid(soppingVo);
+        int i =  insertShoppingService.deleteByOrderid(soppingVo);
         if(i==-5){
             //意思是当前用户还没有购买商品
             return new DefaultResultData(ResultCode.NOT_NOSOPPINGS);
@@ -154,7 +154,7 @@ public class ShoppingTrolleyController {
 
         List<CourseintroductionTable> acs = new ArrayList<CourseintroductionTable>();
         for (int i = 0; i <commoditysSopping.length ; i++) {
-            CourseintroductionTable courseintroductionTable1 = courseintroductionTableServiceImpl.selectDistinction(commoditysSopping[i]);
+            CourseintroductionTable courseintroductionTable1 = courseintroductionTableService.selectDistinction(commoditysSopping[i]);
             if(courseintroductionTable1!=null){
                 acs.add(courseintroductionTable1);
             }

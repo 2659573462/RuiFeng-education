@@ -13,6 +13,7 @@ import com.rimi.ruiFeng.bean.UserTable;
 import com.rimi.ruiFeng.common.*;
 import com.rimi.ruiFeng.service.LoginService;
 import com.rimi.ruiFeng.service.MessageTableService;
+import com.rimi.ruiFeng.service.UserTableService;
 import com.rimi.ruiFeng.service.impl.MessageTableServiceImpl;
 import com.rimi.ruiFeng.service.impl.UserTableServiceImpl;
 import com.rimi.ruiFeng.util.UtilString;
@@ -42,9 +43,9 @@ public class SmsPushUtil {
     static final String accessKeySecret = "jfWg4SZqq8X0oNJAvNmBGf051Zs6Ah";
 
     public  MessageTableService messageTables;
-    private final UserTableServiceImpl userTableService;
+    private final UserTableService userTableService;
 
-    public SmsPushUtil(MessageTableService messageTables,UserTableServiceImpl userTableService){
+    public SmsPushUtil(MessageTableService messageTables, UserTableService userTableService){
         this.messageTables=messageTables;
         this.userTableService=userTableService;
     }

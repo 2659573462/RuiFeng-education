@@ -6,6 +6,7 @@ import com.rimi.ruiFeng.bean.UserTable;
 import com.rimi.ruiFeng.common.*;
 import com.rimi.ruiFeng.service.MessageTableService;
 import com.rimi.ruiFeng.service.ShopTableService;
+import com.rimi.ruiFeng.service.UserTableService;
 import com.rimi.ruiFeng.service.impl.RegisterServiceImpl;
 import com.rimi.ruiFeng.service.impl.UserTableServiceImpl;
 import com.rimi.ruiFeng.util.AcquireOrderForm;
@@ -39,7 +40,7 @@ import static com.rimi.ruiFeng.common.ResultCode.ALREADYEXIST;
 public class RegisterController {
 
     private final RegisterServiceImpl registerService;
-    private final UserTableServiceImpl userTableService;
+    private final UserTableService userTableService;
     private final MessageTableService messageTables;
     private final ShopTableService  shopTableService;
 

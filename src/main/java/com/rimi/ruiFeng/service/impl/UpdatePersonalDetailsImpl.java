@@ -5,13 +5,12 @@ import com.rimi.ruiFeng.common.ResultCode;
 import com.rimi.ruiFeng.common.ResultData;
 import com.rimi.ruiFeng.controller.FileUploadController;
 import com.rimi.ruiFeng.mapper.UserTableMapper;
-import com.rimi.ruiFeng.service.updatePersonalDetails;
+import com.rimi.ruiFeng.service.UpdatePersonalDetails;
 import com.rimi.ruiFeng.util.UtilString;
 import com.rimi.ruiFeng.util.VerificationLogin;
 import com.rimi.ruiFeng.vo.LoginDataVo;
 import com.rimi.ruiFeng.vo.UpdateUserHeadVo;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2019/11/13 11:12
  */
 @Service
-public class UpdatePersonalDetailsImpl implements updatePersonalDetails {
+public class UpdatePersonalDetailsImpl implements UpdatePersonalDetails {
 
     @Resource
     private UserTableMapper userTableMapper;
