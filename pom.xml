@@ -16,7 +16,7 @@
         <!--aspectjweaver的版本-->
         <aspectjweaver.version>1.9.4</aspectjweaver.version>
         <!--mybatis的版本-->
-        <mybatis.version>3.5.3</mybatis.version>
+        <mybatis.version>3.5.6</mybatis.version>
         <!--mybatis-spring的版本-->
         <mybatis.spring.version>2.0.3</mybatis.spring.version>
         <!--druid的版本-->
