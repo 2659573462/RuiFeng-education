@@ -44,7 +44,7 @@
         <!--swagger2的版本-->
         <swagger2.version>2.9.2</swagger2.version>
         <!--jackson的版本-->
-        <jackson.version>2.10.0</jackson.version>
+        <jackson.version>2.13.4.1</jackson.version>
         <!--fastdfs-client-->
         <fastdfs.client.version>1.27-SNAPSHOT</fastdfs.client.version>
     </properties>
